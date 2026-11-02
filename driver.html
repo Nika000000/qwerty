@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Житомир Рух — Міський транспорт онлайн | Пасажир, Водій, Диспетчер</title>
+  
+  <!-- Шрифти -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Локальний автономний Leaflet CSS (без жодних помилок завантаження) -->
+  <link rel="stylesheet" href="assets/leaflet.css">
+
+  <!-- Преміум стилі додатку -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="driver">
+
+  <!-- ВЕРХНЯ ШАПКА З БРЕНДОМ ТА НАВІГАЦІЄЮ 3-Х СТОРІНОК -->
+  <header class="app-header">
+    <div class="brand-section">
+      <a href="#passenger" class="brand-link" title="Житомир Рух">
+        <div class="brand-logo-icon">🚎</div>
+        <div class="brand-title-wrap">
+          <h1 class="brand-title">
+            Житомир Рух
+            <span class="live-pill">ДЕМО 0.2</span>
+          </h1>
+          <span class="brand-tagline">Єдиний портал міського транспорту м. Житомир</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Навігація 3-х сторінок сайту -->
+    <nav class="role-nav-container" aria-label="Сторінки сайту">
+      <button class="role-nav-link active" data-role="passenger" title="Сторінка для пасажирів">
+        <span class="role-icon">👤</span>
+        <span class="role-text">Пасажир</span>
+      </button>
+      <button class="role-nav-link" data-role="driver" title="Сторінка для водіїв транспорту">
+        <span class="role-icon">👨‍✈️</span>
+        <span class="role-text">Кабінет водія</span>
+      </button>
+      <button class="role-nav-link" data-role="dispatcher" title="Сторінка диспетчера">
+        <span class="role-icon">🖥️</span>
+        <span class="role-text">Панель диспетчера</span>
+      </button>
+    </nav>
+
+    <!-- Цифровий годинник та статус підключення -->
+    <div class="header-right-meta">
+      <div class="live-clock-badge" id="header-clock">--:--:--</div>
+      <div class="header-status-indicator">
+        <div class="pulse-dot"></div>
+        <span id="header-live-counter">Демо-дані · GPS не підключено</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ГОЛОВНИЙ РОБОЧИЙ ПРОСТІР (3 ПОВНОЦІННІ СТОРІНКИ В ОДНОМУ САЙТІ) -->
+  <main class="app-main-layout">
+
+    <!-- ========================================== -->
+    <!-- СТОРІНКА 1: ПАСАЖИРСЬКИЙ СЕРВІС            -->
+    <!-- ========================================== -->
+    <div id="page-passenger" class="page-view active-page">
+      <aside class="passenger-sidebar" id="passenger-container">
+        <!-- Заповнюється PassengerComponent: пошук, маршрути, табло прибуття, розклади -->
+      </aside>
+      <section class="map-viewport-container map-mount-point" id="map-mount-passenger">
+        <!-- Спільна карта монтується сюди за замовчуванням -->
+        <div id="shared-map-wrapper" style="width:100%;height:100%;position:relative;">
+          <div id="leaflet-map"></div>
+          <div class="map-floating-toolbar">
+            <button id="btn-map-center-city" class="btn-map-control" title="Центрувати на майдані Соборному">
+              <span>🏛️ Центр Житомира</span>
+            </button>
+            <button id="btn-map-my-location" class="btn-map-control" title="Моє поточне розташування">
+              <span>🎯 Де я?</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- СТОРІНКА 2: КАБІНЕТ ВОДІЯ (COCKPIT HUD)   -->
+    <!-- ========================================== -->
+    <div id="page-driver" class="page-view">
+      <aside class="driver-sidebar" id="driver-container">
+        <!-- Заповнюється DriverComponent: цифровий спідометр, HUD, табель зупинок, кнопки заторів -->
+      </aside>
+      <section class="map-viewport-container map-mount-point" id="map-mount-driver">
+        <!-- Сюди переміщується карта при відкритті сторінки водія -->
+      </section>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- СТОРІНКА 3: ДИСПЕТЧЕРСЬКИЙ ПУНКТ КЕРУВАННЯ -->
+    <!-- ========================================== -->
+    <div id="page-dispatcher" class="page-view">
+      <aside class="dispatcher-sidebar" id="dispatcher-container">
+        <!-- Заповнюється DispatcherComponent: 5 KPI карток, таблиця рейсів, фільтри, журнал подій -->
+      </aside>
+      <section class="map-viewport-container map-mount-point" id="map-mount-dispatcher">
+        <!-- Сюди переміщується карта при відкритті сторінки диспетчера -->
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Локальний автономний Leaflet JS (100% надійність без збоїв мережі) -->
+  <script src="assets/leaflet.js"></script>
+
+  <!-- Головний єдиний бандл додатку -->
+  <script src="js/bundle.js"></script>
+</body>
+</html>
