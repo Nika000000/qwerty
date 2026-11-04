@@ -1759,7 +1759,38 @@ select:focus-visible {
 
 @media (max-width: 640px) {
   body {
-    height: 100dvh;
+    height: auto;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .app-main-layout {
+    flex: 0 0 auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .page-view.active-page {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    flex: 0 0 auto;
+  }
+
+  .passenger-sidebar,
+  .driver-sidebar,
+  .dispatcher-sidebar {
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .map-viewport-container {
+    flex: 0 0 auto;
+    height: clamp(200px, 30dvh, 280px);
+    min-height: 200px;
   }
 
   .app-header {
