@@ -85,9 +85,12 @@ function removeDivById(html, id) {
   return html;
 }
 
-function removeRoleButton(html, role) {
-  const re = new RegExp(`<button\\b(?=[^>]*\\bdata-role=["']${role}["'])[^>]*>[\\s\\S]*?<\\/button>`, 'i');
-  return html.replace(re, '');
+function replaceRoleButtonWithLogin(html, role) {
+  const re = new RegExp(`<button\\b([^>]*\\bdata-role=["']${role}["'][^>]*)>([\\s\\S]*?)<\\/button>`, 'i');
+  return html.replace(re, (_match, attributes, content) => {
+    const title = attributes.match(/\btitle=["']([^"']*)["']/i)?.[1] || 'Службовий вхід';
+    return `<a class="role-nav-link role-nav-entry" href="/staff-login.html?role=${role}" title="${title}">${content}</a>`;
+  });
 }
 
 function renderForRole(html, role) {
@@ -96,12 +99,10 @@ function renderForRole(html, role) {
     if (candidate !== visibleRole && !(visibleRole !== 'passenger' && candidate === 'passenger')) html = removeDivById(html, `page-${candidate}`);
   }
   for (const candidate of ['passenger', 'driver', 'dispatcher']) {
-    if (candidate !== visibleRole && !(visibleRole !== 'passenger' && candidate === 'passenger')) html = removeRoleButton(html, candidate);
+    if (candidate !== visibleRole && !(visibleRole !== 'passenger' && candidate === 'passenger')) html = replaceRoleButtonWithLogin(html, candidate);
   }
   html = html.replace(/<body\b([^>]*)data-page=["'][^"']*["']([^>]*)>/i, `<body$1data-page="${visibleRole}"$2>`);
-  const control = visibleRole === 'passenger'
-    ? '<a class="staff-login-link" href="/staff-login.html">Вхід персоналу</a>'
-    : `<button class="staff-login-link" type="button" data-staff-logout>Вийти з кабінету</button>`;
+  const control = visibleRole === 'passenger' ? '' : '<button class="staff-login-link" type="button" data-staff-logout>Вийти</button>';
   return html.replace('</nav>', `${control}</nav>`);
 }
 

@@ -29,6 +29,8 @@
   <script>
     const form = document.getElementById('staff-login-form');
     const status = document.getElementById('staff-login-status');
+    const requestedRole = new URLSearchParams(window.location.search).get('role');
+    if (requestedRole === 'driver' || requestedRole === 'dispatcher') form.elements.role.value = requestedRole;
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const button = form.querySelector('button[type="submit"]');

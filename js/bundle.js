@@ -3225,7 +3225,7 @@ class ZhytomyrRukhApp {
   }
 
   bindRoleSwitcher() {
-    const roleButtons = document.querySelectorAll('.role-nav-link, .role-btn');
+    const roleButtons = document.querySelectorAll('.role-nav-link[data-role], .role-btn[data-role]');
     roleButtons.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -3244,7 +3244,7 @@ class ZhytomyrRukhApp {
     store.setRole(role);
 
     // Оновлення активної кнопки в шапці
-    document.querySelectorAll('.role-nav-link, .role-btn').forEach(btn => {
+    document.querySelectorAll('.role-nav-link[data-role], .role-btn[data-role]').forEach(btn => {
       const isTarget = btn.dataset.role === role;
       btn.classList.toggle('active', isTarget);
       btn.classList.toggle('driver-active', role === 'driver' && isTarget);
