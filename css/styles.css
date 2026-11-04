@@ -1665,40 +1665,98 @@ select:focus-visible {
 }
 
 .vehicle-marker-box {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: var(--route-color, #0284c7);
-  color: #ffffff;
+  width: 64px;
+  height: 54px;
+  color: #0f172a;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
-  border: 3px solid #ffffff;
   position: relative;
   transition: all 0.2s ease;
 }
 
+.vehicle-icon {
+  display: block;
+  width: 64px;
+  height: 46px;
+  overflow: visible;
+  filter: drop-shadow(0 3px 4px rgba(15, 23, 42, 0.45));
+}
+
+.vehicle-body {
+  fill: var(--route-color, #0284c7);
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+
+.vehicle-route-sign {
+  fill: #fff4c2;
+  stroke: #263445;
+  stroke-width: 0.8;
+}
+
+.vehicle-window {
+  fill: #d9f1f8;
+  stroke: #263445;
+  stroke-width: 0.8;
+}
+
+.vehicle-bumper {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.vehicle-wheel {
+  fill: #1e293b;
+  stroke: #ffffff;
+  stroke-width: 1;
+}
+
+.trolley-pole {
+  fill: none;
+  stroke: #1e293b;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
 .vehicle-bearing-arrow {
   position: absolute;
-  top: -10px;
-  font-size: 12px;
-  color: #ffffff;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+  top: -1px;
+  right: 4px;
+  z-index: 2;
+  font-size: 9px;
+  color: #102a43;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
   pointer-events: none;
 }
 
 .vehicle-badge-num {
-  font-size: 1rem;
-  font-weight: 900;
-  line-height: 1;
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  z-index: 1;
+  width: 19px;
+  color: #102a43;
+  font-size: 0.48rem;
+  font-weight: 950;
+  line-height: 8px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .vehicle-sub-board {
-  font-size: 0.62rem;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 1px 3px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  background: #102a43;
+  color: #ffffff;
+  font-size: 0.48rem;
   font-weight: 800;
-  opacity: 0.95;
   line-height: 1;
 }
 

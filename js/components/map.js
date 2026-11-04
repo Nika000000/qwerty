@@ -314,8 +314,20 @@ class MapController {
                           vehicle.status === 'ahead' ? 'status-ahead' : 'status-ontime';
 
       const htmlContent = `
-        <div class="vehicle-marker-box ${isTrolley ? 'is-trolley' : 'is-bus'} ${statusClass}" style="--route-color: ${route.color}">
+        <div class="vehicle-marker-box ${isTrolley ? 'is-trolley' : 'is-bus'} ${statusClass}" style="--route-color: ${route.color}" aria-label="${isTrolley ? 'Тролейбус' : 'Автобус'} №${route.number}, демо-маркер">
           <div class="vehicle-bearing-arrow" style="transform: rotate(${vehicle.bearing || 0}deg)">▲</div>
+          <svg class="vehicle-icon" viewBox="0 0 64 46" aria-hidden="true" focusable="false">
+            ${isTrolley ? '<path class="trolley-pole" d="M28 9 24 2m10 7 5-7" />' : ''}
+            <path class="vehicle-body" d="M13 7h34c5 0 9 4 9 9v17H7V15c0-5 2-8 6-8Z" />
+            <rect class="vehicle-route-sign" x="14" y="10" width="19" height="8" rx="1.5" />
+            <rect class="vehicle-window" x="35" y="10" width="8" height="8" rx="1" />
+            <rect class="vehicle-window" x="12" y="21" width="12" height="9" rx="1" />
+            <rect class="vehicle-window" x="26" y="21" width="9" height="9" rx="1" />
+            <rect class="vehicle-window" x="37" y="21" width="12" height="9" rx="1" />
+            <path class="vehicle-bumper" d="M7 33h49" />
+            <circle class="vehicle-wheel" cx="18" cy="35" r="4" />
+            <circle class="vehicle-wheel" cx="47" cy="35" r="4" />
+          </svg>
           <span class="vehicle-badge-num">${route.number}</span>
           <span class="vehicle-sub-board">#${vehicle.boardNumber}</span>
         </div>
@@ -334,8 +346,8 @@ class MapController {
         const icon = L.divIcon({
           className: 'custom-vehicle-marker-wrapper',
           html: htmlContent,
-          iconSize: [44, 44],
-          iconAnchor: [22, 22]
+          iconSize: [64, 54],
+          iconAnchor: [32, 27]
         });
 
         const marker = L.marker([vehicle.lat, vehicle.lng], { icon, zIndexOffset: 1000 });
