@@ -19,6 +19,7 @@ class ZhytomyrRukhApp {
 
     // 1. Прив'язка навігації 3-х сторінок (Пасажир / Водій / Диспетчер)
     this.bindRoleSwitcher();
+    this.bindStaffLogin();
 
     // 2. Ініціалізація компонентів для кожної сторінки
     try {
@@ -119,6 +120,67 @@ class ZhytomyrRukhApp {
           this.switchRole(targetRole);
         }
       });
+    });
+  }
+
+  bindStaffLogin() {
+    const dialog = document.createElement('dialog');
+    dialog.className = 'staff-auth-dialog';
+    dialog.setAttribute('aria-labelledby', 'staff-auth-title');
+    dialog.innerHTML = `
+      <form class="staff-auth-form" id="staff-auth-form">
+        <button class="staff-auth-close" type="button" aria-label="Закрити вікно">×</button>
+        <p class="staff-auth-eyebrow">ЖИТОМИР РУХ · СЛУЖБОВИЙ ДОСТУП</p>
+        <h2 id="staff-auth-title">Вхід до кабінету</h2>
+        <p class="staff-auth-role" id="staff-auth-role"></p>
+        <label for="staff-auth-password">Пароль</label>
+        <input id="staff-auth-password" name="password" type="password" autocomplete="current-password" required>
+        <p class="staff-auth-status" id="staff-auth-status" role="status" aria-live="polite"></p>
+        <button class="staff-auth-submit" type="submit">Увійти</button>
+      </form>`;
+    document.body.appendChild(dialog);
+
+    const form = dialog.querySelector('#staff-auth-form');
+    const password = dialog.querySelector('#staff-auth-password');
+    const status = dialog.querySelector('#staff-auth-status');
+    const roleLabel = dialog.querySelector('#staff-auth-role');
+    let selectedRole = null;
+
+    document.querySelectorAll('[data-staff-login]').forEach(button => {
+      button.addEventListener('click', () => {
+        selectedRole = button.dataset.staffLogin;
+        roleLabel.textContent = selectedRole === 'driver' ? 'Кабінет водія' : 'Диспетчерська';
+        status.textContent = '';
+        password.value = '';
+        if (typeof dialog.showModal === 'function') dialog.showModal();
+        else dialog.setAttribute('open', '');
+        password.focus();
+      });
+    });
+
+    dialog.querySelector('.staff-auth-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      if (event.target === dialog) dialog.close();
+    });
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const submit = form.querySelector('[type="submit"]');
+      submit.disabled = true;
+      status.textContent = 'Перевіряємо пароль…';
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ role: selectedRole, password: password.value })
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Не вдалося увійти.');
+        window.location.assign('/');
+      } catch (error) {
+        status.textContent = error.message || 'Сервер недоступний. Спробуйте ще раз.';
+      } finally {
+        submit.disabled = false;
+      }
     });
   }
 

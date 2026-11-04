@@ -2390,3 +2390,45 @@ select:focus-visible {
   .staff-login-link { margin: 8px 0; }
   .staff-login-card { padding: 26px 22px; }
 }
+.staff-nav-button {
+  appearance: none;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.staff-auth-dialog {
+  width: min(430px, calc(100vw - 32px));
+  padding: 0;
+  border: 1px solid #dce4ec;
+  border-radius: 20px;
+  color: #243247;
+  background: #fff;
+  box-shadow: 0 24px 80px #08182b55;
+}
+
+.staff-auth-dialog::backdrop { background: #101a2bb8; backdrop-filter: blur(4px); }
+.staff-auth-form { position: relative; display: grid; gap: 10px; padding: 30px; }
+.staff-auth-close {
+  position: absolute; top: 13px; right: 15px; width: 36px; height: 36px; border: 0; border-radius: 50%;
+  background: #f0f3f6; color: #435266; font-size: 24px; cursor: pointer;
+}
+.staff-auth-eyebrow { margin: 0 38px 2px 0; color: #4379b9; font-size: 10px; font-weight: 800; letter-spacing: .11em; }
+.staff-auth-form h2 { margin: 0; font-size: 25px; }
+.staff-auth-role { margin: -4px 0 4px; color: #64748b; font-size: 14px; }
+.staff-auth-form label { margin-top: 6px; font-size: 13px; font-weight: 750; }
+.staff-auth-form input {
+  width: 100%; min-height: 46px; padding: 0 12px; border: 1px solid #d6dee8; border-radius: 10px;
+  color: inherit; background: #fff; font: inherit;
+}
+.staff-auth-status { min-height: 20px; margin: 0; color: #a33d35; font-size: 12px; }
+.staff-auth-submit {
+  min-height: 46px; border: 0; border-radius: 10px; background: #276bc0; color: #fff; font: inherit;
+  font-weight: 800; cursor: pointer;
+}
+.staff-auth-submit:disabled { opacity: .65; cursor: wait; }
+
+@media (max-width: 640px) {
+  .staff-auth-form { padding: 26px 22px; }
+  .staff-nav-button { flex: 1 1 0; justify-content: center; padding: .5rem .35rem; font-size: .72rem; }
+}

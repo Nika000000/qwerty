@@ -99,7 +99,7 @@ function replaceRoleButtonWithLogin(html, role) {
   const re = new RegExp(`<button\\b([^>]*\\bdata-role=["']${role}["'][^>]*)>([\\s\\S]*?)<\\/button>`, 'i');
   return html.replace(re, (_match, attributes, content) => {
     const title = attributes.match(/\btitle=["']([^"']*)["']/i)?.[1] || 'Службовий вхід';
-    return `<a class="role-nav-link role-nav-entry" href="/staff-login.html?role=${role}" title="${title}">${content}</a>`;
+    return `<button class="role-nav-link staff-nav-button" type="button" data-staff-login="${role}" title="${title}">${content}</button>`;
   });
 }
 
