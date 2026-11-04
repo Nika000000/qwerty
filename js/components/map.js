@@ -397,34 +397,90 @@ class MapController {
 
   locateUser() {
     if (!this.map) return;
-    if (!navigator.geolocation) {
-      window.alert('Браузер не підтримує визначення місцезнаходження.');
+    const geolocation = window.navigator?.geolocation;
+
+    if (!window.isSecureContext) {
+      this.setLocationStatus('Геолокація працює лише на захищеній сторінці HTTPS або localhost.', 'error');
+      return;
+    }
+    if (!geolocation?.getCurrentPosition) {
+      this.setLocationStatus('Цей браузер не надає доступ до геолокації. Відкрийте сайт у повному Chrome/Edge та дозвольте доступ до місця.', 'error');
       return;
     }
 
-    navigator.geolocation.getCurrentPosition(({ coords }) => {
-      const userPos = [coords.latitude, coords.longitude];
-      this.map.flyTo(userPos, 16, { duration: 1.2 });
-      if (this.userMarker) this.map.removeLayer(this.userMarker);
+    const locateButton = document.getElementById('btn-map-my-location');
+    if (locateButton) {
+      locateButton.disabled = true;
+      locateButton.setAttribute('aria-busy', 'true');
+    }
+    this.setLocationStatus('Запитуємо ваше місце. Підтвердіть дозвіл у браузері.', 'pending');
 
-      const userIcon = L.divIcon({
-        className: 'user-loc-wrapper',
-        html: `<div class="user-loc-pulse"><div class="user-loc-core"></div></div>`,
-        iconSize: [24, 24],
-        iconAnchor: [12, 12]
-      });
+    const finishRequest = () => {
+      if (locateButton) {
+        locateButton.disabled = false;
+        locateButton.removeAttribute('aria-busy');
+      }
+    };
 
-      this.userMarker = L.marker(userPos, { icon: userIcon }).addTo(this.map)
-        .bindPopup('<b>Ви перебуваєте тут</b>')
-        .openPopup();
-    }, (error) => {
-      const messages = {
-        1: 'Дозвіл на визначення місцезнаходження не надано.',
-        2: 'Не вдалося визначити місцезнаходження.',
-        3: 'Час очікування визначення місцезнаходження минув.'
-      };
-      window.alert(`${messages[error.code] || 'Помилка визначення місцезнаходження.'} Карта залишилася в центрі Житомира.`);
-    }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 });
+    try {
+      geolocation.getCurrentPosition(({ coords }) => {
+        finishRequest();
+        if (!Number.isFinite(coords.latitude) || !Number.isFinite(coords.longitude)) {
+          this.setLocationStatus('Браузер повернув некоректні координати. Спробуйте ще раз.', 'error');
+          return;
+        }
+
+        const userPos = [coords.latitude, coords.longitude];
+        const accuracy = Number.isFinite(coords.accuracy) ? Math.max(1, Math.round(coords.accuracy)) : null;
+        const popupText = accuracy ? `Ваше місце · точність близько ±${accuracy} м` : 'Ваше місце';
+        this.map.flyTo(userPos, Math.max(this.map.getZoom(), 16), { duration: 1.2 });
+
+        if (this.userMarker) {
+          this.userMarker.setLatLng(userPos);
+          this.userMarker.getPopup()?.setContent(`<b>${popupText}</b>`);
+          this.userMarker.openPopup();
+        } else {
+          const userIcon = L.divIcon({
+            className: 'user-loc-wrapper',
+            html: `<div class="user-loc-pulse"><div class="user-loc-core"></div></div>`,
+            iconSize: [24, 24],
+            iconAnchor: [12, 12]
+          });
+
+          this.userMarker = L.marker(userPos, { icon: userIcon, title: 'Ваше поточне місце' })
+            .addTo(this.map)
+            .bindPopup(`<b>${popupText}</b>`)
+            .openPopup();
+        }
+
+        this.setLocationStatus(accuracy ? `Ваше місце показано на карті · точність близько ±${accuracy} м.` : 'Ваше місце показано на карті.', 'success');
+      }, (error) => {
+        finishRequest();
+        const messages = {
+          1: 'Доступ до місця заборонено. Дозвольте геолокацію в налаштуваннях сайту браузера.',
+          2: 'Браузеру не вдалося визначити місце. Перевірте, чи ввімкнено служби геолокації на пристрої.',
+          3: 'Пошук місця тривав надто довго. Спробуйте ще раз.'
+        };
+        this.setLocationStatus(messages[error.code] || 'Не вдалося визначити ваше місце. Спробуйте ще раз.', 'error');
+      }, { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 });
+    } catch (error) {
+      finishRequest();
+      this.setLocationStatus('Браузер не дозволив запит геолокації. Перевірте дозвіл для цього сайту.', 'error');
+    }
+  }
+
+  setLocationStatus(message, state = 'info') {
+    const status = document.getElementById('map-location-status');
+    if (!status) return;
+    window.clearTimeout(this.locationStatusTimer);
+    status.textContent = message;
+    status.dataset.state = state;
+    status.hidden = false;
+    if (state === 'success') {
+      this.locationStatusTimer = window.setTimeout(() => {
+        status.hidden = true;
+      }, 7000);
+    }
   }
 }
 
