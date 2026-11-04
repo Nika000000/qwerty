@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8097;
 const BASE_DIR = __dirname;
 const sessions = new Map();
 const loginFailures = new Map();
@@ -16,6 +16,16 @@ const PUBLIC_FILES = new Set([
   '/css/styles.css', '/js/bundle.js', '/assets/leaflet.js', '/assets/leaflet.css',
   '/assets/images/marker-shadow.png', '/assets/images/marker-icon.png', '/assets/images/layers.png'
 ]);
+
+// Локальні паролі не комітяться й не доступні через HTTP. Environment-змінні мають пріоритет.
+try {
+  const secretsText = fs.readFileSync(path.join(BASE_DIR, '.staff-secrets.json'), 'utf8').replace(/^\uFEFF/, '');
+  const localSecrets = JSON.parse(secretsText);
+  if (!process.env.DRIVER_PASSWORD && typeof localSecrets.driverPassword === 'string') process.env.DRIVER_PASSWORD = localSecrets.driverPassword;
+  if (!process.env.DISPATCHER_PASSWORD && typeof localSecrets.dispatcherPassword === 'string') process.env.DISPATCHER_PASSWORD = localSecrets.dispatcherPassword;
+} catch (error) {
+  if (error.code !== 'ENOENT') console.warn('Не вдалося прочитати локальні паролі службових ролей.');
+}
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',

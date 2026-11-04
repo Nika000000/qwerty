@@ -13,5 +13,5 @@ if errorlevel 1 (
 )
 start "Житомир Рух — локальний сервер" node server.js
 timeout /t 2 /nobreak > nul
-start "" http://localhost:8080
+start "" http://localhost:8097
 echo Сайт відкриється в браузері. Щоб зупинити сервер, закрийте його вікно.
