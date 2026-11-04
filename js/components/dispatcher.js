@@ -43,7 +43,7 @@ export class DispatcherComponent {
             <div class="kpi-icon-wrap bg-cyan-subtle">${ztIcon('trolley', 21)}</div>
             <div>
               <div class="kpi-val" id="kpi-trolleybuses">—</div>
-              <div class="kpi-label">Тролейбуси ТТУ</div>
+              <div class="kpi-label">Тролейбуси в моделі</div>
             </div>
           </div>
 
@@ -51,7 +51,7 @@ export class DispatcherComponent {
             <div class="kpi-icon-wrap bg-green-subtle">${ztIcon('check', 21)}</div>
             <div>
               <div class="kpi-val text-green" id="kpi-ontime-percent">—%</div>
-              <div class="kpi-label">За графіком</div>
+              <div class="kpi-label">За графіком · демо</div>
             </div>
           </div>
 
@@ -59,7 +59,7 @@ export class DispatcherComponent {
             <div class="kpi-icon-wrap bg-red-subtle">${ztIcon('warning', 21)}</div>
             <div>
               <div class="kpi-val text-red" id="kpi-delayed-count">—</div>
-              <div class="kpi-label">Затримка понад 3 хв</div>
+              <div class="kpi-label">Затримка понад 3 хв · демо</div>
             </div>
           </div>
 

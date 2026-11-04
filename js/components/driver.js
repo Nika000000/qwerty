@@ -95,11 +95,12 @@ export class DriverComponent {
         <!-- Контрольний похвилинний розклад рейсу -->
         <div class="driver-card-dark">
           <div class="checklist-header" style="display:flex;justify-content:space-between;align-items:center;">
-            <h4 style="font-size:0.95rem;font-weight:800;color:#cbd5e1;">Демо-табель рейсу</h4>
+            <h4 style="font-size:0.95rem;font-weight:800;color:#cbd5e1;">Демо-журнал проходження зупинок</h4>
             <span style="background:rgba(2,132,199,0.25);color:#38bdf8;padding:0.25rem 0.65rem;border-radius:999px;font-size:0.75rem;font-weight:700;">
               ${ROUTES_DATA.find(r => r.id === driver.routeId)?.name}
             </span>
           </div>
+          <p style="font-size:0.78rem;color:#94a3b8;">Плановий розклад і фактичні відмітки не підключені. <a href="${ROUTES_DATA.find(r => r.id === driver.routeId)?.officialScheduleUrl}" target="_blank" rel="noopener noreferrer" style="color:#7dd3fc;">Відкрити графік маршруту ↗</a></p>
 
           <div class="schedule-table-scroll">
             <table class="driver-table">
@@ -107,7 +108,7 @@ export class DriverComponent {
                 <tr>
                   <th>№</th>
                   <th>Зупинка</th>
-                  <th>План</th>
+          <th>План</th>
                   <th>Факт</th>
                   <th>Різниця</th>
                   <th>Статус</th>
@@ -149,7 +150,7 @@ export class DriverComponent {
     const delay = driver.delayMinutes || 0;
     let delayStatusClass = 'badge-success';
     let delayStatusText = 'За графіком · демо';
-    let deviationDesc = 'Рух здійснюється точно за затвердженим паспортом маршруту.';
+    let deviationDesc = 'Це локальна симуляція; фактичні GPS-дані та графік не підключені.';
 
     if (delay > 0) {
       delayStatusClass = 'badge-warning';
@@ -225,21 +226,11 @@ export class DriverComponent {
     const route = ROUTES_DATA.find(r => r.id === driver.routeId) || ROUTES_DATA[0];
     const stops = route.stopsForward.map(id => STOPS_DATA[id]).filter(Boolean);
 
-    let baseHour = 7;
-    let baseMinute = 15;
-
     return stops.map((stop, idx) => {
-      baseMinute += 3;
-      if (baseMinute >= 60) {
-        baseHour++;
-        baseMinute -= 60;
-      }
-      const planTime = `${String(baseHour).padStart(2, '0')}:${String(baseMinute).padStart(2, '0')}`;
-      
       const isPassed = idx < (driver.currentStopIndex || 2);
       const isCurrent = idx === (driver.currentStopIndex || 2);
-      const factTime = isPassed ? planTime : (isCurrent ? 'Зараз' : '—');
-      const diffText = isPassed ? '0 хв' : (isCurrent ? `+${driver.delayMinutes || 0} хв` : '—');
+      const factTime = 'Не підключено';
+      const diffText = '—';
       const statusBadge = isPassed ? '<span class="badge-success">Пройдено</span>' :
                           isCurrent ? '<span class="badge-warning">У процесі</span>' :
                           '<span class="badge-sched">Очікується</span>';
@@ -248,7 +239,7 @@ export class DriverComponent {
         <tr class="${isCurrent ? 'row-current-waypoint' : ''}">
           <td>${idx + 1}</td>
           <td><strong>${stop.name}</strong></td>
-          <td>${planTime}</td>
+          <td>Немає даних</td>
           <td>${factTime}</td>
           <td>${diffText}</td>
           <td>${statusBadge}</td>

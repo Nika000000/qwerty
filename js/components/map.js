@@ -182,10 +182,10 @@ class MapController {
     const content = `
       <div class="stop-leaflet-popup">
         <div class="popup-header">
-          <span class="popup-zone">${stop.zone}</span>
+          <span class="popup-zone">Демо-зупинка · ${stop.zone}</span>
           <h4 class="popup-title">${stop.name}</h4>
         </div>
-        <div class="popup-arrivals-title">Очікуваний транспорт:</div>
+        <div class="popup-arrivals-title">Демо-оцінка прибуття · не GPS:</div>
         <div class="popup-arrivals-list">
           ${arrivalsHtml}
         </div>

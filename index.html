@@ -73,6 +73,7 @@
         <!-- Спільна карта монтується сюди за замовчуванням -->
         <div id="shared-map-wrapper" style="width:100%;height:100%;position:relative;">
           <div id="leaflet-map"></div>
+          <div class="map-data-badge">Схема прототипу · GPS не підключено</div>
           <div class="map-floating-toolbar">
             <button id="btn-map-center-city" class="btn-map-control" title="Показати центр Житомира">
               <span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5 10v10m4-10v10m6-10v10m4-10v10M3 20h18"/></svg> Центр міста</span>
@@ -115,6 +116,6 @@
   <script src="assets/leaflet.js"></script>
 
   <!-- Головний єдиний бандл додатку -->
-  <script src="js/bundle.js"></script>
+  <script src="js/bundle.js?v=0.2.4"></script>
 </body>
 </html>

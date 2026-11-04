@@ -239,16 +239,13 @@ const ROUTES_DATA = [
   {
     id: 'tr-2',
     number: '2',
-    name: 'Богунія — Залізничний вокзал',
+    name: 'Богунія — Вокзал — Смолянка',
     type: 'trolleybus',
     typeLabel: 'Тролейбус',
     color: '#0284c7',
     textColor: '#ffffff',
-    fare: '12 ₴ (картка / PayPass)',
-    interval: '6 - 9 хв',
-    workingHours: '05:35 — 22:45',
-    activeVehiclesCount: 6,
-    carrier: 'КП "Житомирське ТТУ"',
+    fare: 'Картка 15 ₴ · банківська 17 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/1',
     stopsForward: [
       's_bohunia_term',
       's_myru_market',
@@ -267,35 +264,17 @@ const ROUTES_DATA = [
       's_myru_market',
       's_bohunia_term'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '05:35',
-        lastDeparture: '22:45',
-        peakInterval: '6 хв',
-        offPeakInterval: '9 хв',
-        departuresFromTermA: ['05:35', '05:45', '05:55', '06:05', '06:15', '06:23', '06:31', '06:40', '06:48', '06:55', '07:02', '07:08', '07:15', '07:22', '07:30', '07:38', '07:45', '07:53', '08:00', '08:08', '08:15', '08:24', '08:33', '08:42', '08:52', '09:02', '09:12', '09:22', '09:32', '09:42', '09:52', '10:02', '10:14', '10:26', '10:38', '10:50', '11:02', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:12', '14:24', '14:36', '14:48', '15:00', '15:10', '15:20', '15:30', '15:40', '15:50', '16:00', '16:08', '16:16', '16:24', '16:32', '16:40', '16:48', '16:56', '17:05', '17:15', '17:25', '17:35', '17:45', '17:55', '18:05', '18:18', '18:30', '18:45', '19:00', '19:15', '19:30', '19:50', '20:10', '20:30', '20:55', '21:20', '21:50', '22:15', '22:45']
-      },
-      weekend: {
-        firstDeparture: '06:00',
-        lastDeparture: '22:15',
-        peakInterval: '10 хв',
-        offPeakInterval: '14 хв'
-      }
-    }
   },
   {
     id: 'tr-1',
-    number: '1',
-    name: 'Залізничний вокзал — Смолянка — Польова — Вокзал',
+    number: '1А',
+    name: 'Вокзал — Театральна — Смолянка — Вокзал (кільцевий)',
     type: 'trolleybus',
     typeLabel: 'Тролейбус',
     color: '#0284c7',
     textColor: '#ffffff',
-    fare: '12 ₴ (картка / PayPass)',
-    interval: '9 - 12 хв',
-    workingHours: '05:45 — 22:20',
-    activeVehiclesCount: 4,
-    carrier: 'КП "Житомирське ТТУ"',
+    fare: 'Картка 15 ₴ · банківська 17 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/47',
     stopsForward: [
       's_vokzal',
       's_global',
@@ -318,34 +297,17 @@ const ROUTES_DATA = [
       's_global',
       's_vokzal'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '05:45',
-        lastDeparture: '22:20',
-        peakInterval: '9 хв',
-        offPeakInterval: '12 хв'
-      },
-      weekend: {
-        firstDeparture: '06:15',
-        lastDeparture: '21:40',
-        peakInterval: '12 хв',
-        offPeakInterval: '16 хв'
-      }
-    }
   },
   {
     id: 'tr-3',
     number: '3',
-    name: 'Богунія — Смолянка (через Центр)',
+    name: 'Богунія — Смолянка — Вокзал',
     type: 'trolleybus',
     typeLabel: 'Тролейбус',
     color: '#0284c7',
     textColor: '#ffffff',
-    fare: '12 ₴ (картка / PayPass)',
-    interval: '10 - 14 хв',
-    workingHours: '06:00 — 22:10',
-    activeVehiclesCount: 3,
-    carrier: 'КП "Житомирське ТТУ"',
+    fare: 'Картка 15 ₴ · банківська 17 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/5',
     stopsForward: [
       's_bohunia_term',
       's_myru_market',
@@ -362,34 +324,17 @@ const ROUTES_DATA = [
       's_myru_market',
       's_bohunia_term'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '06:00',
-        lastDeparture: '22:10',
-        peakInterval: '10 хв',
-        offPeakInterval: '14 хв'
-      },
-      weekend: {
-        firstDeparture: '06:30',
-        lastDeparture: '21:30',
-        peakInterval: '15 хв',
-        offPeakInterval: '18 хв'
-      }
-    }
   },
   {
     id: 'tr-15a',
     number: '15А',
-    name: 'Гідропарк — Залізничний вокзал',
+    name: 'Гідропарк — Вокзал — Смолянка',
     type: 'trolleybus',
     typeLabel: 'Тролейбус',
     color: '#0284c7',
     textColor: '#ffffff',
-    fare: '12 ₴ (картка / PayPass)',
-    interval: '12 - 15 хв',
-    workingHours: '06:15 — 21:50',
-    activeVehiclesCount: 3,
-    carrier: 'КП "Житомирське ТТУ"',
+    fare: 'Картка 15 ₴ · банківська 17 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/77',
     stopsForward: [
       's_hydropark',
       's_politekh',
@@ -406,34 +351,17 @@ const ROUTES_DATA = [
       's_politekh',
       's_hydropark'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '06:15',
-        lastDeparture: '21:50',
-        peakInterval: '12 хв',
-        offPeakInterval: '15 хв'
-      },
-      weekend: {
-        firstDeparture: '06:45',
-        lastDeparture: '21:15',
-        peakInterval: '15 хв',
-        offPeakInterval: '20 хв'
-      }
-    }
   },
   {
     id: 'bus-10',
     number: '10',
-    name: 'Крошня — Силікатний завод',
+    name: 'Крошня (ТЦ «Ринг») — Паперова фабрика',
     type: 'bus',
     typeLabel: 'Автобус',
     color: '#16a34a',
     textColor: '#ffffff',
-    fare: '15 ₴',
-    interval: '8 - 11 хв',
-    workingHours: '06:00 — 22:30',
-    activeVehiclesCount: 5,
-    carrier: 'ТОВ "Житомирське АТП 11827"',
+    fare: 'Картка 22 ₴ · банківська 24 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/122',
     stopsForward: [
       's_kroshnya_term',
       's_kroshnya_svitankova',
@@ -454,34 +382,17 @@ const ROUTES_DATA = [
       's_kroshnya_svitankova',
       's_kroshnya_term'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '06:00',
-        lastDeparture: '22:30',
-        peakInterval: '8 хв',
-        offPeakInterval: '11 хв'
-      },
-      weekend: {
-        firstDeparture: '06:30',
-        lastDeparture: '22:00',
-        peakInterval: '12 хв',
-        offPeakInterval: '15 хв'
-      }
-    }
   },
   {
     id: 'bus-19',
     number: '19',
-    name: 'Силікатний завод — Гідропарк (через Центр)',
+    name: 'с-ще Лісове — Біомедскло',
     type: 'bus',
     typeLabel: 'Автобус',
     color: '#16a34a',
     textColor: '#ffffff',
-    fare: '15 ₴',
-    interval: '10 - 14 хв',
-    workingHours: '06:10 — 21:40',
-    activeVehiclesCount: 4,
-    carrier: 'ПП "Шеріфф"',
+    fare: 'Картка 22 ₴ · банківська 24 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/110',
     stopsForward: [
       's_silikat',
       's_global',
@@ -498,34 +409,17 @@ const ROUTES_DATA = [
       's_global',
       's_silikat'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '06:10',
-        lastDeparture: '21:40',
-        peakInterval: '10 хв',
-        offPeakInterval: '14 хв'
-      },
-      weekend: {
-        firstDeparture: '06:40',
-        lastDeparture: '21:00',
-        peakInterval: '15 хв',
-        offPeakInterval: '20 хв'
-      }
-    }
   },
   {
     id: 'bus-23',
     number: '23',
-    name: 'Богунія — Залізничний вокзал — Польова',
+    name: 'Богунія — Комбінат силікатних виробів / Слобода-Селець',
     type: 'bus',
     typeLabel: 'Автобус',
     color: '#ea580c',
     textColor: '#ffffff',
-    fare: '15 ₴',
-    interval: '7 - 10 хв',
-    workingHours: '05:40 — 22:40',
-    activeVehiclesCount: 6,
-    carrier: 'ТОВ "САВ-ТРАНС"',
+    fare: 'Картка 22 ₴ · банківська 24 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/86',
     stopsForward: [
       's_bohunia_term',
       's_myru_market',
@@ -548,34 +442,17 @@ const ROUTES_DATA = [
       's_myru_market',
       's_bohunia_term'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '05:40',
-        lastDeparture: '22:40',
-        peakInterval: '7 хв',
-        offPeakInterval: '10 хв'
-      },
-      weekend: {
-        firstDeparture: '06:10',
-        lastDeparture: '22:00',
-        peakInterval: '10 хв',
-        offPeakInterval: '13 хв'
-      }
-    }
   },
   {
     id: 'bus-58',
     number: '58',
-    name: 'Польова — Мальованка',
+    name: 'Мальованка — Обласна лікарня / Діагностичний центр',
     type: 'bus',
     typeLabel: 'Автобус',
     color: '#9333ea',
     textColor: '#ffffff',
-    fare: '15 ₴',
-    interval: '10 - 15 хв',
-    workingHours: '06:20 — 21:30',
-    activeVehiclesCount: 3,
-    carrier: 'ТОВ "Житомир-Авто"',
+    fare: 'Картка 22 ₴ · банківська 24 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/106',
     stopsForward: [
       's_poliova_vitruka',
       's_smolyanka',
@@ -590,20 +467,6 @@ const ROUTES_DATA = [
       's_smolyanka',
       's_poliova_vitruka'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '06:20',
-        lastDeparture: '21:30',
-        peakInterval: '10 хв',
-        offPeakInterval: '15 хв'
-      },
-      weekend: {
-        firstDeparture: '06:50',
-        lastDeparture: '21:00',
-        peakInterval: '15 хв',
-        offPeakInterval: '20 хв'
-      }
-    }
   }
 ];
 
@@ -833,11 +696,25 @@ const INITIAL_VEHICLES = [
 ];
 const EXTERNAL_SERVICES = [
   {
+    name: 'Актуальні розклади Житомира',
+    desc: 'Графіки, напрямки та зупинки; сервіс вказаний на сайті КП «Житомиртранспорт».',
+    url: 'https://zt.rozklad.in.ua/',
+    icon: 'clock',
+    badge: 'Партнерський сервіс'
+  },
+  {
+    name: 'Тарифи та оплата',
+    desc: 'Чинні тарифи за способом оплати, пільгові ціни та проїзні від КП «Житомиртранспорт».',
+    url: 'https://transport.zt.ua/?page_id=284',
+    icon: 'info',
+    badge: 'Джерело тарифів'
+  },
+  {
     name: 'Dozor City (Житомир)',
-    desc: 'Офіційний моніторинг транспорту Житомира в реальному часі',
+    desc: 'Зовнішній сервіс моніторингу; фактична наявність транспорту залежить від джерел даних сервісу.',
     url: 'https://city.dozor.tech/ua/zhytomyr/city',
     icon: 'compass',
-    badge: 'Реальний GPS'
+    badge: 'Зовнішній сервіс'
   },
   {
     name: 'EasyWay Житомир',
@@ -909,19 +786,19 @@ class StateStore {
       alerts: [
         {
           id: 'alt-1',
-          time: '19:35',
+          time: 'Демо',
           level: 'warning',
-          title: 'Уповільнений рух на вул. Київська',
-          text: 'Затор від ЦУМу до майдану Перемоги. Можливі затримки рейсів №1, 2, 23 до 4 хвилин.',
-          route: 'Тр 1, 2'
+          title: 'Приклад повідомлення про уповільнення руху',
+          text: 'Демонстраційний текст для інтерфейсу. Він не підтверджує фактичний затор чи затримку.',
+          route: 'Демо-подія'
         },
         {
           id: 'alt-2',
-          time: '19:10',
+          time: 'Демо',
           level: 'info',
-          title: 'Плановий випуск ТТУ на вечірню зміну',
-          text: 'Всі 24 тролейбуси працюють за графіком. Останні рейси з кінцевих після 22:15.',
-          route: 'Мережа ТТУ'
+          title: 'Приклад оголошення про транспорт',
+          text: 'Демонстраційний текст. Фактична кількість машин і виконання графіка не надходять до прототипу.',
+          route: 'Демо-подія'
         }
       ]
     };
@@ -1461,10 +1338,10 @@ class MapController {
     const content = `
       <div class="stop-leaflet-popup">
         <div class="popup-header">
-          <span class="popup-zone">${stop.zone}</span>
+          <span class="popup-zone">Демо-зупинка · ${stop.zone}</span>
           <h4 class="popup-title">${stop.name}</h4>
         </div>
-        <div class="popup-arrivals-title">Очікуваний транспорт:</div>
+        <div class="popup-arrivals-title">Демо-оцінка прибуття · не GPS:</div>
         <div class="popup-arrivals-list">
           ${arrivalsHtml}
         </div>
@@ -1838,7 +1715,7 @@ class PassengerComponent {
           <div class="route-title-group">
             <span class="route-large-badge" style="background:${selectedRoute.color}">${selectedRoute.number}</span>
             <div>
-              <div class="route-type-badge">${selectedRoute.typeLabel} • ${selectedRoute.carrier}</div>
+              <div class="route-type-badge">${selectedRoute.typeLabel} · демо-модель маршруту</div>
               <h3 class="route-main-name">${selectedRoute.name}</h3>
             </div>
           </div>
@@ -1853,17 +1730,14 @@ class PassengerComponent {
             <span class="meta-val">${selectedRoute.fare}</span>
           </div>
           <div class="meta-item">
-            <span class="meta-label">Інтервал руху:</span>
-            <span class="meta-val">${selectedRoute.interval}</span>
+            <span class="meta-label">Джерело тарифу:</span>
+            <a class="meta-val verified-data-link" href="https://transport.zt.ua/?page_id=284" target="_blank" rel="noopener noreferrer">КП «Житомиртранспорт» · 15.08.2026 ↗</a>
           </div>
-          <div class="meta-item">
-            <span class="meta-label">Години роботи:</span>
-            <span class="meta-val">${selectedRoute.workingHours}</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">У демо-моделі:</span>
-            <span class="meta-val text-emerald">${selectedRoute.activeVehiclesCount} машин</span>
-          </div>
+        </div>
+
+        <div class="route-data-notice">
+          Демонстраційна схема: зупинки, координати та рух машин у цьому прототипі не є актуальними даними перевізника.
+          <a href="${selectedRoute.officialScheduleUrl}" target="_blank" rel="noopener noreferrer">Перевірити маршрут і розклад ↗</a>
         </div>
 
         <!-- Перемикач напрямку -->
@@ -1878,7 +1752,7 @@ class PassengerComponent {
 
         <!-- Список зупинок маршруту -->
         <div class="stops-timeline-wrapper">
-          <h4 class="section-subheading">Зупинки на маршруті (${stopIds.length}):</h4>
+          <h4 class="section-subheading">Демо-схема зупинок (${stopIds.length}):</h4>
           <div class="stops-timeline">
             ${stopIds.map((stopId, index) => {
               const stop = STOPS_DATA[stopId];
@@ -1893,11 +1767,9 @@ class PassengerComponent {
                   <div class="node-content">
                     <div class="node-name-row">
                       <span class="node-name">${stop.name}</span>
-                      ${stop.hasDisplay ? `<span class="badge-amenity" title="На зупинці є табло">${ztIcon('monitor', 15)}</span>` : ''}
-                      ${stop.hasShelter ? `<span class="badge-amenity" title="На зупинці є навіс">${ztIcon('shelter', 15)}</span>` : ''}
                     </div>
                     <div class="node-sub">
-                      <span class="node-zone">${stop.zone}</span>
+                      <span class="node-zone">Демо-схема</span>
                       <button class="btn-peek-eta" data-stop-id="${stop.id}">Переглянути табло →</button>
                     </div>
                   </div>
@@ -1930,7 +1802,7 @@ class PassengerComponent {
           <div>
             <div class="badge-live-pulse">Демонстраційне табло · без GPS-даних</div>
             <h3 class="stop-headline">${currentStop.name}</h3>
-            <span class="stop-zone-label">Район: ${currentStop.zone} • ${currentStop.connections.length} маршрутів через зупинку</span>
+            <span class="stop-zone-label">Демонстраційна зупинка · район: ${currentStop.zone}</span>
           </div>
           <button class="btn-star-fav ${isFavStop ? 'is-fav' : ''}" id="btn-toggle-fav-stop">
             ${ztIcon('star', 16)} ${isFavStop ? 'Зупинку збережено' : 'Зберегти зупинку'}
@@ -1999,7 +1871,6 @@ class PassengerComponent {
   getScheduleHtml() {
     const state = store.getState();
     const selectedRoute = ROUTES_DATA.find(r => r.id === state.selectedRouteId) || ROUTES_DATA[0];
-    const sched = selectedRoute.schedule;
 
     return `
       <div class="schedule-tab-content">
@@ -2007,65 +1878,14 @@ class PassengerComponent {
           <div class="sched-top-row">
             <span class="route-large-badge" style="background:${selectedRoute.color}">${selectedRoute.number}</span>
             <div>
-              <span class="schedule-eyebrow">Демо-розклад маршруту ${selectedRoute.number}</span>
+              <span class="schedule-eyebrow">Розклад маршруту ${selectedRoute.number}</span>
               <h3>${selectedRoute.name}</h3>
-              <p class="schedule-disclaimer">Час відправлень для прикладу. Це не офіційний розклад перевізника.</p>
-            </div>
-          </div>
-          <div class="sched-kpis">
-            <div class="kpi-box">
-              <span class="kpi-num">${sched.weekday.firstDeparture}</span>
-              <span class="kpi-lbl">Перший рейс · будні</span>
-            </div>
-            <div class="kpi-box">
-              <span class="kpi-num">${sched.weekday.lastDeparture}</span>
-              <span class="kpi-lbl">Останній рейс · будні</span>
-            </div>
-            <div class="kpi-box">
-              <span class="kpi-num">${sched.weekday.peakInterval}</span>
-              <span class="kpi-lbl">Інтервал · пік</span>
-            </div>
-            <div class="kpi-box">
-              <span class="kpi-num">${sched.weekday.offPeakInterval}</span>
-              <span class="kpi-lbl">Інтервал · міжпік</span>
+              <p class="schedule-disclaimer">Відкрийте чинний графік у сервісі, партнером якого в Житомирі є КП «Житомиртранспорт». Графік може змінюватися — перевірте дату його дії та напрямок руху.</p>
             </div>
           </div>
         </div>
-
-        <div class="schedule-grid-box">
-          <div class="sched-box-title">
-            <div>
-              <span class="schedule-eyebrow">ВІДПРАВЛЕННЯ З КІНЦЕВОЇ</span>
-              <h4>${STOPS_DATA[selectedRoute.stopsForward[0]]?.name}</h4>
-            </div>
-            <span class="badge-weekday">Будні · пн–пт</span>
-          </div>
-
-          ${sched.weekday.departuresFromTermA ? `
-            <div class="departure-hours-grid">
-              ${this.groupTimesByHour(sched.weekday.departuresFromTermA)}
-            </div>
-          ` : `
-            <p class="schedule-empty-note">Інтервали в демо-моделі: ${sched.weekday.peakInterval} у піковий час і ${sched.weekday.offPeakInterval} між піками.</p>
-          `}
-        </div>
-
-        <div class="schedule-weekend-card">
-          <div class="sched-box-title">
-            <div>
-              <span class="schedule-eyebrow">СУБОТА · НЕДІЛЯ · СВЯТА</span>
-              <h4>Вихідні дні</h4>
-            </div>
-            <span class="badge-weekend">Демо-розклад</span>
-          </div>
-          <div class="weekend-schedule-grid">
-            <div class="weekend-time"><span>Перший рейс</span><strong>${sched.weekend.firstDeparture}</strong></div>
-            <div class="weekend-time"><span>Останній рейс</span><strong>${sched.weekend.lastDeparture}</strong></div>
-            <div class="weekend-time"><span>Інтервал · пік</span><strong>${sched.weekend.peakInterval}</strong></div>
-            <div class="weekend-time"><span>Інтервал · міжпік</span><strong>${sched.weekend.offPeakInterval}</strong></div>
-          </div>
-          <p class="schedule-disclaimer">Орієнтовні демонстраційні значення, не підтверджені перевізником.</p>
-        </div>
+        <a class="official-schedule-cta" href="${selectedRoute.officialScheduleUrl}" target="_blank" rel="noopener noreferrer">Відкрити актуальний графік маршруту ${selectedRoute.number} ↗</a>
+        <p class="schedule-disclaimer">У сервісі доступні напрямки, зупинки та графіки на будні й вихідні. Оперативні зміни публікує КП «Житомирське ТТУ».</p>
       </div>
     `;
   }
@@ -2341,9 +2161,9 @@ class PassengerComponent {
         <div class="links-info-card">
           <h4>${ztIcon('info', 18)} Корисна інформація</h4>
           <p>
-            • Гаряча лінія КП «Житомирське ТТУ»: <strong>+38 (0412) 47-07-42</strong><br>
-            • Управління транспорту і зв'язку Житомирської міської ради: <strong>(0412) 48-12-08</strong><br>
-            • Вартість проїзду: Електротранспорт — 12 ₴ (картка) / Автобус — 15 ₴.
+            • Гаряча лінія з питань якості перевезень: <strong>067 503 21 26, 093 503 21 26</strong><br>
+            • Повний тариф: тролейбус/трамвай — транспортна картка 15 ₴, банківська картка/NFC 17 ₴, QR-квиток 25 ₴; автобус/маршрутка — транспортна картка 22 ₴, банківська картка/NFC 24 ₴, QR-квиток 25 ₴.<br>
+            • Пільгові тарифи та проїзні: перевіряйте на <a href="https://transport.zt.ua/?page_id=284" target="_blank" rel="noopener noreferrer">сторінці тарифів КП «Житомиртранспорт» ↗</a>. Дані перевірено 04.11.2026.
           </p>
         </div>
       </div>
@@ -2629,11 +2449,12 @@ class DriverComponent {
         <!-- Контрольний похвилинний розклад рейсу -->
         <div class="driver-card-dark">
           <div class="checklist-header" style="display:flex;justify-content:space-between;align-items:center;">
-            <h4 style="font-size:0.95rem;font-weight:800;color:#cbd5e1;">Демо-табель рейсу</h4>
+            <h4 style="font-size:0.95rem;font-weight:800;color:#cbd5e1;">Демо-журнал проходження зупинок</h4>
             <span style="background:rgba(2,132,199,0.25);color:#38bdf8;padding:0.25rem 0.65rem;border-radius:999px;font-size:0.75rem;font-weight:700;">
               ${ROUTES_DATA.find(r => r.id === driver.routeId)?.name}
             </span>
           </div>
+          <p style="font-size:0.78rem;color:#94a3b8;">Плановий розклад і фактичні відмітки не підключені. <a href="${ROUTES_DATA.find(r => r.id === driver.routeId)?.officialScheduleUrl}" target="_blank" rel="noopener noreferrer" style="color:#7dd3fc;">Відкрити графік маршруту ↗</a></p>
 
           <div class="schedule-table-scroll">
             <table class="driver-table">
@@ -2641,7 +2462,7 @@ class DriverComponent {
                 <tr>
                   <th>№</th>
                   <th>Зупинка</th>
-                  <th>План</th>
+          <th>План</th>
                   <th>Факт</th>
                   <th>Різниця</th>
                   <th>Статус</th>
@@ -2683,7 +2504,7 @@ class DriverComponent {
     const delay = driver.delayMinutes || 0;
     let delayStatusClass = 'badge-success';
     let delayStatusText = 'За графіком · демо';
-    let deviationDesc = 'Рух здійснюється точно за затвердженим паспортом маршруту.';
+    let deviationDesc = 'Це локальна симуляція; фактичні GPS-дані та графік не підключені.';
 
     if (delay > 0) {
       delayStatusClass = 'badge-warning';
@@ -2759,21 +2580,11 @@ class DriverComponent {
     const route = ROUTES_DATA.find(r => r.id === driver.routeId) || ROUTES_DATA[0];
     const stops = route.stopsForward.map(id => STOPS_DATA[id]).filter(Boolean);
 
-    let baseHour = 7;
-    let baseMinute = 15;
-
     return stops.map((stop, idx) => {
-      baseMinute += 3;
-      if (baseMinute >= 60) {
-        baseHour++;
-        baseMinute -= 60;
-      }
-      const planTime = `${String(baseHour).padStart(2, '0')}:${String(baseMinute).padStart(2, '0')}`;
-      
       const isPassed = idx < (driver.currentStopIndex || 2);
       const isCurrent = idx === (driver.currentStopIndex || 2);
-      const factTime = isPassed ? planTime : (isCurrent ? 'Зараз' : '—');
-      const diffText = isPassed ? '0 хв' : (isCurrent ? `+${driver.delayMinutes || 0} хв` : '—');
+      const factTime = 'Не підключено';
+      const diffText = '—';
       const statusBadge = isPassed ? '<span class="badge-success">Пройдено</span>' :
                           isCurrent ? '<span class="badge-warning">У процесі</span>' :
                           '<span class="badge-sched">Очікується</span>';
@@ -2782,7 +2593,7 @@ class DriverComponent {
         <tr class="${isCurrent ? 'row-current-waypoint' : ''}">
           <td>${idx + 1}</td>
           <td><strong>${stop.name}</strong></td>
-          <td>${planTime}</td>
+          <td>Немає даних</td>
           <td>${factTime}</td>
           <td>${diffText}</td>
           <td>${statusBadge}</td>
@@ -2905,7 +2716,7 @@ class DispatcherComponent {
             <div class="kpi-icon-wrap bg-cyan-subtle">${ztIcon('trolley', 21)}</div>
             <div>
               <div class="kpi-val" id="kpi-trolleybuses">—</div>
-              <div class="kpi-label">Тролейбуси ТТУ</div>
+              <div class="kpi-label">Тролейбуси в моделі</div>
             </div>
           </div>
 
@@ -2913,7 +2724,7 @@ class DispatcherComponent {
             <div class="kpi-icon-wrap bg-green-subtle">${ztIcon('check', 21)}</div>
             <div>
               <div class="kpi-val text-green" id="kpi-ontime-percent">—%</div>
-              <div class="kpi-label">За графіком</div>
+              <div class="kpi-label">За графіком · демо</div>
             </div>
           </div>
 
@@ -2921,7 +2732,7 @@ class DispatcherComponent {
             <div class="kpi-icon-wrap bg-red-subtle">${ztIcon('warning', 21)}</div>
             <div>
               <div class="kpi-val text-red" id="kpi-delayed-count">—</div>
-              <div class="kpi-label">Затримка понад 3 хв</div>
+              <div class="kpi-label">Затримка понад 3 хв · демо</div>
             </div>
           </div>
 

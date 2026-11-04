@@ -191,16 +191,13 @@ export const ROUTES_DATA = [
   {
     id: 'tr-2',
     number: '2',
-    name: 'Богунія — Залізничний вокзал',
+    name: 'Богунія — Вокзал — Смолянка',
     type: 'trolleybus',
     typeLabel: 'Тролейбус',
     color: '#0284c7',
     textColor: '#ffffff',
-    fare: '12 ₴ (картка / PayPass)',
-    interval: '6 - 9 хв',
-    workingHours: '05:35 — 22:45',
-    activeVehiclesCount: 6,
-    carrier: 'КП "Житомирське ТТУ"',
+    fare: 'Картка 15 ₴ · банківська 17 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/1',
     stopsForward: [
       's_bohunia_term',
       's_myru_market',
@@ -219,35 +216,17 @@ export const ROUTES_DATA = [
       's_myru_market',
       's_bohunia_term'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '05:35',
-        lastDeparture: '22:45',
-        peakInterval: '6 хв',
-        offPeakInterval: '9 хв',
-        departuresFromTermA: ['05:35', '05:45', '05:55', '06:05', '06:15', '06:23', '06:31', '06:40', '06:48', '06:55', '07:02', '07:08', '07:15', '07:22', '07:30', '07:38', '07:45', '07:53', '08:00', '08:08', '08:15', '08:24', '08:33', '08:42', '08:52', '09:02', '09:12', '09:22', '09:32', '09:42', '09:52', '10:02', '10:14', '10:26', '10:38', '10:50', '11:02', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:12', '14:24', '14:36', '14:48', '15:00', '15:10', '15:20', '15:30', '15:40', '15:50', '16:00', '16:08', '16:16', '16:24', '16:32', '16:40', '16:48', '16:56', '17:05', '17:15', '17:25', '17:35', '17:45', '17:55', '18:05', '18:18', '18:30', '18:45', '19:00', '19:15', '19:30', '19:50', '20:10', '20:30', '20:55', '21:20', '21:50', '22:15', '22:45']
-      },
-      weekend: {
-        firstDeparture: '06:00',
-        lastDeparture: '22:15',
-        peakInterval: '10 хв',
-        offPeakInterval: '14 хв'
-      }
-    }
   },
   {
     id: 'tr-1',
-    number: '1',
-    name: 'Залізничний вокзал — Смолянка — Польова — Вокзал',
+    number: '1А',
+    name: 'Вокзал — Театральна — Смолянка — Вокзал (кільцевий)',
     type: 'trolleybus',
     typeLabel: 'Тролейбус',
     color: '#0284c7',
     textColor: '#ffffff',
-    fare: '12 ₴ (картка / PayPass)',
-    interval: '9 - 12 хв',
-    workingHours: '05:45 — 22:20',
-    activeVehiclesCount: 4,
-    carrier: 'КП "Житомирське ТТУ"',
+    fare: 'Картка 15 ₴ · банківська 17 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/47',
     stopsForward: [
       's_vokzal',
       's_global',
@@ -270,34 +249,17 @@ export const ROUTES_DATA = [
       's_global',
       's_vokzal'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '05:45',
-        lastDeparture: '22:20',
-        peakInterval: '9 хв',
-        offPeakInterval: '12 хв'
-      },
-      weekend: {
-        firstDeparture: '06:15',
-        lastDeparture: '21:40',
-        peakInterval: '12 хв',
-        offPeakInterval: '16 хв'
-      }
-    }
   },
   {
     id: 'tr-3',
     number: '3',
-    name: 'Богунія — Смолянка (через Центр)',
+    name: 'Богунія — Смолянка — Вокзал',
     type: 'trolleybus',
     typeLabel: 'Тролейбус',
     color: '#0284c7',
     textColor: '#ffffff',
-    fare: '12 ₴ (картка / PayPass)',
-    interval: '10 - 14 хв',
-    workingHours: '06:00 — 22:10',
-    activeVehiclesCount: 3,
-    carrier: 'КП "Житомирське ТТУ"',
+    fare: 'Картка 15 ₴ · банківська 17 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/5',
     stopsForward: [
       's_bohunia_term',
       's_myru_market',
@@ -314,34 +276,17 @@ export const ROUTES_DATA = [
       's_myru_market',
       's_bohunia_term'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '06:00',
-        lastDeparture: '22:10',
-        peakInterval: '10 хв',
-        offPeakInterval: '14 хв'
-      },
-      weekend: {
-        firstDeparture: '06:30',
-        lastDeparture: '21:30',
-        peakInterval: '15 хв',
-        offPeakInterval: '18 хв'
-      }
-    }
   },
   {
     id: 'tr-15a',
     number: '15А',
-    name: 'Гідропарк — Залізничний вокзал',
+    name: 'Гідропарк — Вокзал — Смолянка',
     type: 'trolleybus',
     typeLabel: 'Тролейбус',
     color: '#0284c7',
     textColor: '#ffffff',
-    fare: '12 ₴ (картка / PayPass)',
-    interval: '12 - 15 хв',
-    workingHours: '06:15 — 21:50',
-    activeVehiclesCount: 3,
-    carrier: 'КП "Житомирське ТТУ"',
+    fare: 'Картка 15 ₴ · банківська 17 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/77',
     stopsForward: [
       's_hydropark',
       's_politekh',
@@ -358,34 +303,17 @@ export const ROUTES_DATA = [
       's_politekh',
       's_hydropark'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '06:15',
-        lastDeparture: '21:50',
-        peakInterval: '12 хв',
-        offPeakInterval: '15 хв'
-      },
-      weekend: {
-        firstDeparture: '06:45',
-        lastDeparture: '21:15',
-        peakInterval: '15 хв',
-        offPeakInterval: '20 хв'
-      }
-    }
   },
   {
     id: 'bus-10',
     number: '10',
-    name: 'Крошня — Силікатний завод',
+    name: 'Крошня (ТЦ «Ринг») — Паперова фабрика',
     type: 'bus',
     typeLabel: 'Автобус',
     color: '#16a34a',
     textColor: '#ffffff',
-    fare: '15 ₴',
-    interval: '8 - 11 хв',
-    workingHours: '06:00 — 22:30',
-    activeVehiclesCount: 5,
-    carrier: 'ТОВ "Житомирське АТП 11827"',
+    fare: 'Картка 22 ₴ · банківська 24 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/122',
     stopsForward: [
       's_kroshnya_term',
       's_kroshnya_svitankova',
@@ -406,34 +334,17 @@ export const ROUTES_DATA = [
       's_kroshnya_svitankova',
       's_kroshnya_term'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '06:00',
-        lastDeparture: '22:30',
-        peakInterval: '8 хв',
-        offPeakInterval: '11 хв'
-      },
-      weekend: {
-        firstDeparture: '06:30',
-        lastDeparture: '22:00',
-        peakInterval: '12 хв',
-        offPeakInterval: '15 хв'
-      }
-    }
   },
   {
     id: 'bus-19',
     number: '19',
-    name: 'Силікатний завод — Гідропарк (через Центр)',
+    name: 'с-ще Лісове — Біомедскло',
     type: 'bus',
     typeLabel: 'Автобус',
     color: '#16a34a',
     textColor: '#ffffff',
-    fare: '15 ₴',
-    interval: '10 - 14 хв',
-    workingHours: '06:10 — 21:40',
-    activeVehiclesCount: 4,
-    carrier: 'ПП "Шеріфф"',
+    fare: 'Картка 22 ₴ · банківська 24 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/110',
     stopsForward: [
       's_silikat',
       's_global',
@@ -450,34 +361,17 @@ export const ROUTES_DATA = [
       's_global',
       's_silikat'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '06:10',
-        lastDeparture: '21:40',
-        peakInterval: '10 хв',
-        offPeakInterval: '14 хв'
-      },
-      weekend: {
-        firstDeparture: '06:40',
-        lastDeparture: '21:00',
-        peakInterval: '15 хв',
-        offPeakInterval: '20 хв'
-      }
-    }
   },
   {
     id: 'bus-23',
     number: '23',
-    name: 'Богунія — Залізничний вокзал — Польова',
+    name: 'Богунія — Комбінат силікатних виробів / Слобода-Селець',
     type: 'bus',
     typeLabel: 'Автобус',
     color: '#ea580c',
     textColor: '#ffffff',
-    fare: '15 ₴',
-    interval: '7 - 10 хв',
-    workingHours: '05:40 — 22:40',
-    activeVehiclesCount: 6,
-    carrier: 'ТОВ "САВ-ТРАНС"',
+    fare: 'Картка 22 ₴ · банківська 24 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/86',
     stopsForward: [
       's_bohunia_term',
       's_myru_market',
@@ -500,34 +394,17 @@ export const ROUTES_DATA = [
       's_myru_market',
       's_bohunia_term'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '05:40',
-        lastDeparture: '22:40',
-        peakInterval: '7 хв',
-        offPeakInterval: '10 хв'
-      },
-      weekend: {
-        firstDeparture: '06:10',
-        lastDeparture: '22:00',
-        peakInterval: '10 хв',
-        offPeakInterval: '13 хв'
-      }
-    }
   },
   {
     id: 'bus-58',
     number: '58',
-    name: 'Польова — Мальованка',
+    name: 'Мальованка — Обласна лікарня / Діагностичний центр',
     type: 'bus',
     typeLabel: 'Автобус',
     color: '#9333ea',
     textColor: '#ffffff',
-    fare: '15 ₴',
-    interval: '10 - 15 хв',
-    workingHours: '06:20 — 21:30',
-    activeVehiclesCount: 3,
-    carrier: 'ТОВ "Житомир-Авто"',
+    fare: 'Картка 22 ₴ · банківська 24 ₴ · QR 25 ₴',
+    officialScheduleUrl: 'https://zt.rozklad.in.ua/home/schedule/106',
     stopsForward: [
       's_poliova_vitruka',
       's_smolyanka',
@@ -542,20 +419,6 @@ export const ROUTES_DATA = [
       's_smolyanka',
       's_poliova_vitruka'
     ],
-    schedule: {
-      weekday: {
-        firstDeparture: '06:20',
-        lastDeparture: '21:30',
-        peakInterval: '10 хв',
-        offPeakInterval: '15 хв'
-      },
-      weekend: {
-        firstDeparture: '06:50',
-        lastDeparture: '21:00',
-        peakInterval: '15 хв',
-        offPeakInterval: '20 хв'
-      }
-    }
   }
 ];
 
@@ -786,11 +649,25 @@ export const INITIAL_VEHICLES = [
 
 export const EXTERNAL_SERVICES = [
   {
+    name: 'Актуальні розклади Житомира',
+    desc: 'Графіки, напрямки та зупинки; сервіс вказаний на сайті КП «Житомиртранспорт».',
+    url: 'https://zt.rozklad.in.ua/',
+    icon: 'clock',
+    badge: 'Партнерський сервіс'
+  },
+  {
+    name: 'Тарифи та оплата',
+    desc: 'Чинні тарифи за способом оплати, пільгові ціни та проїзні від КП «Житомиртранспорт».',
+    url: 'https://transport.zt.ua/?page_id=284',
+    icon: 'info',
+    badge: 'Джерело тарифів'
+  },
+  {
     name: 'Dozor City (Житомир)',
-    desc: 'Офіційний моніторинг транспорту Житомира в реальному часі',
+    desc: 'Зовнішній сервіс моніторингу; фактична наявність транспорту залежить від джерел даних сервісу.',
     url: 'https://city.dozor.tech/ua/zhytomyr/city',
     icon: 'compass',
-    badge: 'Реальний GPS'
+    badge: 'Зовнішній сервіс'
   },
   {
     name: 'EasyWay Житомир',

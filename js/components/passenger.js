@@ -143,7 +143,7 @@ export class PassengerComponent {
           <div class="route-title-group">
             <span class="route-large-badge" style="background:${selectedRoute.color}">${selectedRoute.number}</span>
             <div>
-              <div class="route-type-badge">${selectedRoute.typeLabel} • ${selectedRoute.carrier}</div>
+              <div class="route-type-badge">${selectedRoute.typeLabel} · демо-модель маршруту</div>
               <h3 class="route-main-name">${selectedRoute.name}</h3>
             </div>
           </div>
@@ -158,17 +158,14 @@ export class PassengerComponent {
             <span class="meta-val">${selectedRoute.fare}</span>
           </div>
           <div class="meta-item">
-            <span class="meta-label">Інтервал руху:</span>
-            <span class="meta-val">${selectedRoute.interval}</span>
+            <span class="meta-label">Джерело тарифу:</span>
+            <a class="meta-val verified-data-link" href="https://transport.zt.ua/?page_id=284" target="_blank" rel="noopener noreferrer">КП «Житомиртранспорт» · 15.08.2026 ↗</a>
           </div>
-          <div class="meta-item">
-            <span class="meta-label">Години роботи:</span>
-            <span class="meta-val">${selectedRoute.workingHours}</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">У демо-моделі:</span>
-            <span class="meta-val text-emerald">${selectedRoute.activeVehiclesCount} машин</span>
-          </div>
+        </div>
+
+        <div class="route-data-notice">
+          Демонстраційна схема: зупинки, координати та рух машин у цьому прототипі не є актуальними даними перевізника.
+          <a href="${selectedRoute.officialScheduleUrl}" target="_blank" rel="noopener noreferrer">Перевірити маршрут і розклад ↗</a>
         </div>
 
         <!-- Перемикач напрямку -->
@@ -183,7 +180,7 @@ export class PassengerComponent {
 
         <!-- Список зупинок маршруту -->
         <div class="stops-timeline-wrapper">
-          <h4 class="section-subheading">Зупинки на маршруті (${stopIds.length}):</h4>
+          <h4 class="section-subheading">Демо-схема зупинок (${stopIds.length}):</h4>
           <div class="stops-timeline">
             ${stopIds.map((stopId, index) => {
               const stop = STOPS_DATA[stopId];
@@ -198,11 +195,9 @@ export class PassengerComponent {
                   <div class="node-content">
                     <div class="node-name-row">
                       <span class="node-name">${stop.name}</span>
-                      ${stop.hasDisplay ? `<span class="badge-amenity" title="На зупинці є табло">${ztIcon('monitor', 15)}</span>` : ''}
-                      ${stop.hasShelter ? `<span class="badge-amenity" title="На зупинці є навіс">${ztIcon('shelter', 15)}</span>` : ''}
                     </div>
                     <div class="node-sub">
-                      <span class="node-zone">${stop.zone}</span>
+                      <span class="node-zone">Демо-схема</span>
                       <button class="btn-peek-eta" data-stop-id="${stop.id}">Переглянути табло →</button>
                     </div>
                   </div>
@@ -235,7 +230,7 @@ export class PassengerComponent {
           <div>
             <div class="badge-live-pulse">Демонстраційне табло · без GPS-даних</div>
             <h3 class="stop-headline">${currentStop.name}</h3>
-            <span class="stop-zone-label">Район: ${currentStop.zone} • ${currentStop.connections.length} маршрутів через зупинку</span>
+            <span class="stop-zone-label">Демонстраційна зупинка · район: ${currentStop.zone}</span>
           </div>
           <button class="btn-star-fav ${isFavStop ? 'is-fav' : ''}" id="btn-toggle-fav-stop">
             ${ztIcon('star', 16)} ${isFavStop ? 'Зупинку збережено' : 'Зберегти зупинку'}
@@ -304,7 +299,6 @@ export class PassengerComponent {
   getScheduleHtml() {
     const state = store.getState();
     const selectedRoute = ROUTES_DATA.find(r => r.id === state.selectedRouteId) || ROUTES_DATA[0];
-    const sched = selectedRoute.schedule;
 
     return `
       <div class="schedule-tab-content">
@@ -312,65 +306,14 @@ export class PassengerComponent {
           <div class="sched-top-row">
             <span class="route-large-badge" style="background:${selectedRoute.color}">${selectedRoute.number}</span>
             <div>
-              <span class="schedule-eyebrow">Демо-розклад маршруту ${selectedRoute.number}</span>
+              <span class="schedule-eyebrow">Розклад маршруту ${selectedRoute.number}</span>
               <h3>${selectedRoute.name}</h3>
-              <p class="schedule-disclaimer">Час відправлень для прикладу. Це не офіційний розклад перевізника.</p>
-            </div>
-          </div>
-          <div class="sched-kpis">
-            <div class="kpi-box">
-              <span class="kpi-num">${sched.weekday.firstDeparture}</span>
-              <span class="kpi-lbl">Перший рейс · будні</span>
-            </div>
-            <div class="kpi-box">
-              <span class="kpi-num">${sched.weekday.lastDeparture}</span>
-              <span class="kpi-lbl">Останній рейс · будні</span>
-            </div>
-            <div class="kpi-box">
-              <span class="kpi-num">${sched.weekday.peakInterval}</span>
-              <span class="kpi-lbl">Інтервал · пік</span>
-            </div>
-            <div class="kpi-box">
-              <span class="kpi-num">${sched.weekday.offPeakInterval}</span>
-              <span class="kpi-lbl">Інтервал · міжпік</span>
+              <p class="schedule-disclaimer">Відкрийте чинний графік у сервісі, партнером якого в Житомирі є КП «Житомиртранспорт». Графік може змінюватися — перевірте дату його дії та напрямок руху.</p>
             </div>
           </div>
         </div>
-
-        <div class="schedule-grid-box">
-          <div class="sched-box-title">
-            <div>
-              <span class="schedule-eyebrow">ВІДПРАВЛЕННЯ З КІНЦЕВОЇ</span>
-              <h4>${STOPS_DATA[selectedRoute.stopsForward[0]]?.name}</h4>
-            </div>
-            <span class="badge-weekday">Будні · пн–пт</span>
-          </div>
-
-          ${sched.weekday.departuresFromTermA ? `
-            <div class="departure-hours-grid">
-              ${this.groupTimesByHour(sched.weekday.departuresFromTermA)}
-            </div>
-          ` : `
-            <p class="schedule-empty-note">Інтервали в демо-моделі: ${sched.weekday.peakInterval} у піковий час і ${sched.weekday.offPeakInterval} між піками.</p>
-          `}
-        </div>
-
-        <div class="schedule-weekend-card">
-          <div class="sched-box-title">
-            <div>
-              <span class="schedule-eyebrow">СУБОТА · НЕДІЛЯ · СВЯТА</span>
-              <h4>Вихідні дні</h4>
-            </div>
-            <span class="badge-weekend">Демо-розклад</span>
-          </div>
-          <div class="weekend-schedule-grid">
-            <div class="weekend-time"><span>Перший рейс</span><strong>${sched.weekend.firstDeparture}</strong></div>
-            <div class="weekend-time"><span>Останній рейс</span><strong>${sched.weekend.lastDeparture}</strong></div>
-            <div class="weekend-time"><span>Інтервал · пік</span><strong>${sched.weekend.peakInterval}</strong></div>
-            <div class="weekend-time"><span>Інтервал · міжпік</span><strong>${sched.weekend.offPeakInterval}</strong></div>
-          </div>
-          <p class="schedule-disclaimer">Орієнтовні демонстраційні значення, не підтверджені перевізником.</p>
-        </div>
+        <a class="official-schedule-cta" href="${selectedRoute.officialScheduleUrl}" target="_blank" rel="noopener noreferrer">Відкрити актуальний графік маршруту ${selectedRoute.number} ↗</a>
+        <p class="schedule-disclaimer">У сервісі доступні напрямки, зупинки та графіки на будні й вихідні. Оперативні зміни публікує КП «Житомирське ТТУ».</p>
       </div>
     `;
   }
@@ -646,9 +589,9 @@ export class PassengerComponent {
         <div class="links-info-card">
           <h4>${ztIcon('info', 18)} Корисна інформація</h4>
           <p>
-            • Гаряча лінія КП «Житомирське ТТУ»: <strong>+38 (0412) 47-07-42</strong><br>
-            • Управління транспорту і зв'язку Житомирської міської ради: <strong>(0412) 48-12-08</strong><br>
-            • Вартість проїзду: Електротранспорт — 12 ₴ (картка) / Автобус — 15 ₴.
+            • Гаряча лінія з питань якості перевезень: <strong>067 503 21 26, 093 503 21 26</strong><br>
+            • Повний тариф: тролейбус/трамвай — транспортна картка 15 ₴, банківська картка/NFC 17 ₴, QR-квиток 25 ₴; автобус/маршрутка — транспортна картка 22 ₴, банківська картка/NFC 24 ₴, QR-квиток 25 ₴.<br>
+            • Пільгові тарифи та проїзні: перевіряйте на <a href="https://transport.zt.ua/?page_id=284" target="_blank" rel="noopener noreferrer">сторінці тарифів КП «Житомиртранспорт» ↗</a>. Дані перевірено 04.11.2026.
           </p>
         </div>
       </div>
