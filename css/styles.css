@@ -2326,3 +2326,65 @@ select:focus-visible {
     flex-direction: column;
   }
 }
+.staff-login-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  margin-left: 10px;
+  padding: 0 14px;
+  border: 1px solid var(--border-color, #dce3ea);
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  color: var(--text-primary, #253449);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.staff-login-link:hover { border-color: var(--accent, #3176d2); color: var(--accent, #3176d2); }
+.staff-login-link:disabled { opacity: .6; cursor: wait; }
+
+.staff-login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #f2f5f8;
+  color: #243247;
+  font-family: "Manrope", "Plus Jakarta Sans", sans-serif;
+}
+
+.staff-login-card {
+  width: min(100%, 440px);
+  padding: 36px;
+  border: 1px solid #e1e7ee;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 20px 60px #23384e18;
+}
+
+.staff-login-brand { color: #243247; font-size: 18px; font-weight: 800; text-decoration: none; }
+.staff-login-eyebrow { margin: 30px 0 8px; color: #4379b9; font-size: 11px; font-weight: 800; letter-spacing: .13em; }
+.staff-login-card h1 { margin: 0; font-size: 28px; }
+.staff-login-description { margin: 10px 0 24px; color: #667487; font-size: 14px; line-height: 1.6; }
+.staff-login-card form { display: grid; gap: 10px; }
+.staff-login-card label { margin-top: 8px; font-size: 13px; font-weight: 700; }
+.staff-login-card input, .staff-login-card select {
+  width: 100%; min-height: 46px; padding: 0 12px; border: 1px solid #d6dee8; border-radius: 10px;
+  background: white; color: inherit; font: inherit;
+}
+.staff-login-card form button {
+  min-height: 48px; margin-top: 10px; border: 0; border-radius: 11px; background: #276bc0;
+  color: white; font: inherit; font-weight: 800; cursor: pointer;
+}
+.staff-login-card form button:disabled { opacity: .65; cursor: wait; }
+#staff-login-status { min-height: 22px; margin: 4px 0 0; color: #a33d35; font-size: 13px; }
+.staff-login-back { display: inline-block; margin-top: 18px; color: #4f6176; font-size: 13px; text-decoration: none; }
+
+@media (max-width: 700px) {
+  .staff-login-link { margin: 8px 0; }
+  .staff-login-card { padding: 26px 22px; }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Вхід персоналу — Житомир Рух</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="staff-login-page">
+  <main class="staff-login-card">
+    <a class="staff-login-brand" href="/">Житомир Рух</a>
+    <p class="staff-login-eyebrow">СЛУЖБОВИЙ ДОСТУП</p>
+    <h1>Вхід персоналу</h1>
+    <p class="staff-login-description">Кабінет доступний лише водіям і диспетчерам з паролем, наданим адміністратором.</p>
+    <form id="staff-login-form">
+      <label for="staff-role">Роль</label>
+      <select id="staff-role" name="role" required>
+        <option value="driver">Водій</option>
+        <option value="dispatcher">Диспетчер</option>
+      </select>
+      <label for="staff-password">Пароль доступу</label>
+      <input id="staff-password" name="password" type="password" autocomplete="current-password" required>
+      <button type="submit">Увійти</button>
+      <p id="staff-login-status" role="status" aria-live="polite"></p>
+    </form>
+    <a class="staff-login-back" href="/">← Повернутися до сторінки пасажира</a>
+  </main>
+  <script>
+    const form = document.getElementById('staff-login-form');
+    const status = document.getElementById('staff-login-status');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      status.textContent = 'Перевіряємо доступ…';
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ role: form.role.value, password: form.password.value })
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Не вдалося увійти.');
+        window.location.assign('/');
+      } catch (error) {
+        status.textContent = error.message || 'Сервер недоступний. Спробуйте пізніше.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

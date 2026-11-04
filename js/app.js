@@ -83,6 +83,16 @@ class ZhytomyrRukhApp {
     // 7. Кнопки плаваючого тулбара мапи
     this.bindMapControls();
 
+    // Вихід завершує серверну сесію службового кабінету.
+    const logoutButton = document.querySelector('[data-staff-logout]');
+    if (logoutButton) {
+      logoutButton.addEventListener('click', async () => {
+        logoutButton.disabled = true;
+        try { await fetch('/api/logout', { method: 'POST' }); }
+        finally { window.location.assign('/'); }
+      });
+    }
+
     // 8. Глобальні методи зворотного виклику для попапів та дій
     this.exposeGlobalHelpers();
 
@@ -113,6 +123,9 @@ class ZhytomyrRukhApp {
   }
 
   switchRole(role) {
+    const pageRole = document.body.dataset.page || 'passenger';
+    const allowedRoles = pageRole === 'passenger' ? ['passenger'] : ['passenger', pageRole];
+    if (!allowedRoles.includes(role)) role = pageRole;
     store.setRole(role);
 
     // Оновлення активної кнопки в шапці
