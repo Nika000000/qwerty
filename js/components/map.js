@@ -2,6 +2,7 @@
 import { ZHYTOMYR_CENTER, DEFAULT_ZOOM, STOPS_DATA, ROUTES_DATA } from '../data/routes.js';
 import { store } from '../services/store.js';
 import { simulator } from '../services/simulator.js';
+import { ztIcon } from './icons.js';
 
 class MapController {
   constructor() {
@@ -27,9 +28,9 @@ class MapController {
         container.innerHTML = `
           <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#64748b;font-family:sans-serif;background:#f8fafc;padding:20px;text-align:center;">
             <div>
-              <div style="font-size:2.5rem;margin-bottom:10px;">🗺️</div>
-              <strong style="color:#0f172a;font-size:1.1rem;">Інтерактивна схема транспорту Житомира</strong>
-              <div style="font-size:0.85rem;color:#64748b;margin-top:6px;">Завантаження бібліотеки карти...</div>
+              <div style="margin-bottom:10px;">${ztIcon('map', 38)}</div>
+              <strong style="color:#0f172a;font-size:1.1rem;">Карта маршрутів Житомира</strong>
+              <div style="font-size:0.85rem;color:#64748b;margin-top:6px;">Завантажуємо карту…</div>
             </div>
           </div>
         `;
@@ -98,9 +99,9 @@ class MapController {
       container.innerHTML = `
         <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#64748b;font-family:sans-serif;background:#f8fafc;padding:20px;text-align:center;">
           <div>
-            <div style="font-size:2rem;margin-bottom:10px;">🗺️</div>
-            <strong style="color:#0f172a;">Схема маршрутів Житомира</strong>
-            <p style="font-size:0.85rem;color:#64748b;margin-top:6px;">Списки маршрутів, розклади та кабінети активні.</p>
+            <div style="margin-bottom:10px;">${ztIcon('map', 32)}</div>
+            <strong style="color:#0f172a;">Карта тимчасово недоступна</strong>
+            <p style="font-size:0.85rem;color:#64748b;margin-top:6px;">Спробуйте оновити сторінку. Список маршрутів доступний.</p>
           </div>
         </div>
       `;
@@ -353,7 +354,7 @@ class MapController {
   openVehiclePopup(vehicle, route, marker) {
     const statusText = vehicle.status === 'delayed' ? `<span class="badge-delayed">Запізнення +${vehicle.delayMinutes} хв</span>` :
                        vehicle.status === 'ahead' ? `<span class="badge-ahead">Випередження ${vehicle.delayMinutes} хв</span>` :
-                       `<span class="badge-ontime">В графіку</span>`;
+                       `<span class="badge-ontime">За графіком · демо</span>`;
 
     const content = `
       <div class="vehicle-leaflet-popup">
@@ -402,7 +403,7 @@ class MapController {
       });
 
       this.userMarker = L.marker(userPos, { icon: userIcon }).addTo(this.map)
-        .bindPopup('<b>Ваше поточне місцезнаходження</b>')
+        .bindPopup('<b>Ви перебуваєте тут</b>')
         .openPopup();
     }, (error) => {
       const messages = {

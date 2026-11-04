@@ -90,11 +90,11 @@ class ZhytomyrRukhApp {
     store.subscribe('vehicles_updated', (vehicles) => {
       const counterEl = document.getElementById('header-live-counter');
       if (counterEl) {
-        counterEl.textContent = `${vehicles.length} ТЗ · демо`;
+        counterEl.textContent = `${vehicles.length} машин у демо-моделі`;
       }
     });
     const counterEl = document.getElementById('header-live-counter');
-    if (counterEl) counterEl.textContent = `${store.getState().vehicles.length} ТЗ · демо`;
+    if (counterEl) counterEl.textContent = `${store.getState().vehicles.length} машин у демо-моделі`;
 
     console.log('«Житомир Рух» готовий до роботи!');
   }

@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Житомир Рух — Міський транспорт онлайн | Пасажир, Водій, Диспетчер</title>
+  <title>Житомир Рух — Маршрути та зупинки міста</title>
   
   <!-- Шрифти -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Локальний автономний Leaflet CSS (без жодних помилок завантаження) -->
   <link rel="stylesheet" href="assets/leaflet.css">
@@ -22,13 +22,13 @@
   <header class="app-header">
     <div class="brand-section">
       <a href="#passenger" class="brand-link" title="Житомир Рух">
-        <div class="brand-logo-icon">🚎</div>
+        <div class="brand-logo-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17h14l1-7H4l1 7Zm2-7 2-5m8 5-2-5M7 20h.01M17 20h.01"/><path d="M10 5 8 3m6 2 2-2"/></svg></div>
         <div class="brand-title-wrap">
           <h1 class="brand-title">
             Житомир Рух
-            <span class="live-pill">ДЕМО 0.2</span>
+            <span class="live-pill">ДЕМО · 0.2</span>
           </h1>
-          <span class="brand-tagline">Єдиний портал міського транспорту м. Житомир</span>
+          <span class="brand-tagline">Маршрути та зупинки Житомира</span>
         </div>
       </a>
     </div>
@@ -36,16 +36,16 @@
     <!-- Навігація 3-х сторінок сайту -->
     <nav class="role-nav-container" aria-label="Сторінки сайту">
       <button class="role-nav-link active" data-role="passenger" title="Сторінка для пасажирів">
-        <span class="role-icon">👤</span>
-        <span class="role-text">Пасажир</span>
+        <span class="role-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg></span>
+        <span class="role-text">Пасажирам</span>
       </button>
-      <button class="role-nav-link" data-role="driver" title="Сторінка для водіїв транспорту">
-        <span class="role-icon">👨‍✈️</span>
+      <button class="role-nav-link" data-role="driver" title="Кабінет водія">
+        <span class="role-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M5 21a7 7 0 0 1 14 0M9 12l3 2 3-2"/></svg></span>
         <span class="role-text">Кабінет водія</span>
       </button>
-      <button class="role-nav-link" data-role="dispatcher" title="Сторінка диспетчера">
-        <span class="role-icon">🖥️</span>
-        <span class="role-text">Панель диспетчера</span>
+      <button class="role-nav-link" data-role="dispatcher" title="Панель диспетчера">
+        <span class="role-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></span>
+        <span class="role-text">Диспетчерська</span>
       </button>
     </nav>
 
@@ -74,11 +74,11 @@
         <div id="shared-map-wrapper" style="width:100%;height:100%;position:relative;">
           <div id="leaflet-map"></div>
           <div class="map-floating-toolbar">
-            <button id="btn-map-center-city" class="btn-map-control" title="Центрувати на майдані Соборному">
-              <span>🏛️ Центр Житомира</span>
+            <button id="btn-map-center-city" class="btn-map-control" title="Показати центр Житомира">
+              <span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5 10v10m4-10v10m6-10v10m4-10v10M3 20h18"/></svg> Центр міста</span>
             </button>
-            <button id="btn-map-my-location" class="btn-map-control" title="Моє поточне розташування">
-              <span>🎯 Де я?</span>
+            <button id="btn-map-my-location" class="btn-map-control" title="Показати моє місце на карті">
+              <span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2"/></svg> Моє місце</span>
             </button>
           </div>
         </div>

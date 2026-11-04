@@ -2,6 +2,7 @@
 import { ROUTES_DATA, STOPS_DATA } from '../data/routes.js';
 import { store } from '../services/store.js';
 import { simulator } from '../services/simulator.js';
+import { ztIcon } from './icons.js';
 
 export class DispatcherComponent {
   constructor(containerId) {
@@ -31,15 +32,15 @@ export class DispatcherComponent {
         <!-- Смуга ключових показників (KPI) -->
         <div class="dispatcher-kpi-bar">
           <div class="kpi-card">
-            <div class="kpi-icon-wrap bg-blue-subtle">🚌</div>
+            <div class="kpi-icon-wrap bg-blue-subtle">${ztIcon('bus', 21)}</div>
             <div>
               <div class="kpi-val" id="kpi-total-vehicles">—</div>
-              <div class="kpi-label">ТЗ на лінії</div>
+              <div class="kpi-label">Машин у моделі</div>
             </div>
           </div>
 
           <div class="kpi-card">
-            <div class="kpi-icon-wrap bg-cyan-subtle">⚡</div>
+            <div class="kpi-icon-wrap bg-cyan-subtle">${ztIcon('trolley', 21)}</div>
             <div>
               <div class="kpi-val" id="kpi-trolleybuses">—</div>
               <div class="kpi-label">Тролейбуси ТТУ</div>
@@ -47,26 +48,26 @@ export class DispatcherComponent {
           </div>
 
           <div class="kpi-card">
-            <div class="kpi-icon-wrap bg-green-subtle">🟢</div>
+            <div class="kpi-icon-wrap bg-green-subtle">${ztIcon('check', 21)}</div>
             <div>
               <div class="kpi-val text-green" id="kpi-ontime-percent">—%</div>
-              <div class="kpi-label">В графіку руху</div>
+              <div class="kpi-label">За графіком</div>
             </div>
           </div>
 
           <div class="kpi-card">
-            <div class="kpi-icon-wrap bg-red-subtle">⚠️</div>
+            <div class="kpi-icon-wrap bg-red-subtle">${ztIcon('warning', 21)}</div>
             <div>
               <div class="kpi-val text-red" id="kpi-delayed-count">—</div>
-              <div class="kpi-label">Затримки > 3 хв</div>
+              <div class="kpi-label">Затримка понад 3 хв</div>
             </div>
           </div>
 
           <div class="kpi-card">
-            <div class="kpi-icon-wrap bg-purple-subtle">⏱️</div>
+            <div class="kpi-icon-wrap bg-purple-subtle">${ztIcon('timer', 21)}</div>
             <div>
               <div class="kpi-val" id="kpi-sim-speed">1x</div>
-              <div class="kpi-label">Швидкість симулятора</div>
+              <div class="kpi-label">Темп симуляції</div>
             </div>
           </div>
         </div>
@@ -75,8 +76,8 @@ export class DispatcherComponent {
         <div class="dispatcher-controls-card">
           <div class="controls-row-top">
             <div class="search-box-flex">
-              <input type="text" id="disp-search" class="zt-input" 
-                     placeholder="Пошук за бортовим номером, водієм або маршрутом..." 
+              <input type="text" id="disp-search" class="zt-input"
+                     placeholder="Номер борта, ім'я водія або маршрут"
                      value="${filters.search}"
                      style="background: #0f172a; color: #ffffff; border-color: rgba(255,255,255,0.15);">
             </div>
@@ -93,20 +94,20 @@ export class DispatcherComponent {
 
               <select id="disp-type-filter" class="zt-select" style="background: #0f172a; color: #ffffff; border-color: rgba(255,255,255,0.15);">
                 <option value="all" ${filters.type === 'all' ? 'selected' : ''}>Усі види ТЗ</option>
-                <option value="trolleybus" ${filters.type === 'trolleybus' ? 'selected' : ''}>⚡ Тролейбуси</option>
-                <option value="bus" ${filters.type === 'bus' ? 'selected' : ''}>🚌 Автобуси</option>
+                <option value="trolleybus" ${filters.type === 'trolleybus' ? 'selected' : ''}>Тролейбуси</option>
+                <option value="bus" ${filters.type === 'bus' ? 'selected' : ''}>Автобуси</option>
               </select>
 
               <select id="disp-status-filter" class="zt-select" style="background: #0f172a; color: #ffffff; border-color: rgba(255,255,255,0.15);">
                 <option value="all" ${filters.status === 'all' ? 'selected' : ''}>Усі статуси</option>
-                <option value="on_time" ${filters.status === 'on_time' ? 'selected' : ''}>В графіку</option>
+                <option value="on_time" ${filters.status === 'on_time' ? 'selected' : ''}>За графіком · демо</option>
                 <option value="delayed" ${filters.status === 'delayed' ? 'selected' : ''}>Затримка (відстають)</option>
                 <option value="ahead" ${filters.status === 'ahead' ? 'selected' : ''}>Випередження</option>
               </select>
             </div>
 
             <div class="sim-speed-buttons">
-              <span class="sim-label">GPS темп:</span>
+              <span class="sim-label">Темп моделі:</span>
               <button class="btn-sim-speed active" data-speed="1">1x</button>
               <button class="btn-sim-speed" data-speed="2">2x</button>
               <button class="btn-sim-speed" data-speed="5">5x</button>
@@ -118,8 +119,8 @@ export class DispatcherComponent {
           <!-- Таблиця активних рейсів -->
           <div class="active-trips-card">
             <div class="table-top-bar">
-              <h4>📋 Демонстраційні рейси (<span id="disp-visible-count">0</span>)</h4>
-              <button id="btn-export-log" class="btn-sm-action">Зберегти звіт (CSV) 📥</button>
+              <h4>Транспорт у демо-моделі (<span id="disp-visible-count">0</span>)</h4>
+              <button id="btn-export-log" class="btn-sm-action">${ztIcon('file', 16)} Експортувати CSV</button>
             </div>
 
             <div class="dispatcher-table-wrapper">
@@ -146,8 +147,8 @@ export class DispatcherComponent {
           <!-- Стрічка сповіщень та оперативних журналів -->
           <div class="alerts-log-card">
             <div class="table-top-bar">
-              <h4>🚨 Оперативні сповіщення та затримки</h4>
-              <button id="btn-add-manual-alert" class="btn-sm-action">+ Демо-оголошення</button>
+              <h4>Події та повідомлення</h4>
+              <button id="btn-add-manual-alert" class="btn-sm-action">${ztIcon('plus', 16)} Додати подію</button>
             </div>
 
             <div id="disp-alerts-feed" class="alerts-feed-wrapper">
@@ -226,7 +227,7 @@ export class DispatcherComponent {
       const isAhead = v.status === 'ahead';
       const delayBadge = isDelayed ? `<span class="badge-delayed">+${v.delayMinutes} хв (Запізнення)</span>` :
                          isAhead ? `<span class="badge-ahead">${v.delayMinutes} хв (Випередження)</span>` :
-                         `<span class="badge-ontime">В графіку (0 хв)</span>`;
+                         `<span class="badge-ontime">За графіком · демо</span>`;
 
       return `
         <tr class="${isDelayed ? 'row-delayed-highlight' : ''}">
@@ -257,9 +258,9 @@ export class DispatcherComponent {
           </td>
           <td>
             <div class="disp-action-buttons">
-              <button class="btn-table-action" onclick="window.ztMsgDriver('${v.boardNumber}', '${v.driverName}')" title="Надіслати вказівку водію">💬</button>
-              <button class="btn-table-action" onclick="window.ztFixSchedule('${v.boardNumber}')" title="Вирівняти графік">⏱️</button>
-              <button class="btn-table-action" onclick="window.ztFocusVehicle('${v.id}')" title="Показати на карті">🗺️</button>
+              <button class="btn-table-action" onclick="window.ztMsgDriver('${v.boardNumber}', '${v.driverName}')" title="Демо: створити повідомлення">${ztIcon('message', 16)}</button>
+              <button class="btn-table-action" onclick="window.ztFixSchedule('${v.boardNumber}')" title="Демо: скинути відхилення">${ztIcon('timer', 16)}</button>
+              <button class="btn-table-action" onclick="window.ztFocusVehicle('${v.id}')" title="Показати маркер на карті">${ztIcon('map', 16)}</button>
             </div>
           </td>
         </tr>

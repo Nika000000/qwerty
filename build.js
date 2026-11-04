@@ -4,6 +4,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const iconsCode = cleanModule(fs.readFileSync(path.join(__dirname, 'js/components/icons.js'), 'utf8'));
 
 function cleanModule(code) {
   // Видаляємо import та export вирази
@@ -29,6 +30,9 @@ const bundleContent = `/**
  */
 (function() {
   'use strict';
+
+  // Спільний набір піктограм
+  ${iconsCode}
 
   // 1. ДАНІ МАРШРУТІВ ТА ЗУПИНОК
   ${routesCode}

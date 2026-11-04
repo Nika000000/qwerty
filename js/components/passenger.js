@@ -2,6 +2,7 @@
 import { ROUTES_DATA, STOPS_DATA, EXTERNAL_SERVICES } from '../data/routes.js';
 import { store } from '../services/store.js';
 import { simulator } from '../services/simulator.js';
+import { ztIcon } from './icons.js';
 
 export class PassengerComponent {
   constructor(containerId) {
@@ -41,23 +42,23 @@ export class PassengerComponent {
         <!-- Навігація вкладок кабінету пасажира -->
         <div class="passenger-tabs-nav">
           <button class="nav-tab-btn ${currentTab === 'search' ? 'active' : ''}" data-tab="search">
-            <span class="tab-icon">🔍</span>
+            <span class="tab-icon">${ztIcon('route', 18)}</span>
             <span>Маршрути</span>
           </button>
           <button class="nav-tab-btn ${currentTab === 'schedule' ? 'active' : ''}" data-tab="schedule">
-            <span class="tab-icon">🕒</span>
+            <span class="tab-icon">${ztIcon('clock', 18)}</span>
             <span>Розклад</span>
           </button>
           <button class="nav-tab-btn ${currentTab === 'planner' ? 'active' : ''}" data-tab="planner">
-            <span class="tab-icon">🧭</span>
-            <span>Планувальник</span>
+            <span class="tab-icon">${ztIcon('compass', 18)}</span>
+            <span>План поїздки</span>
           </button>
           <button class="nav-tab-btn ${currentTab === 'favorites' ? 'active' : ''}" data-tab="favorites">
-            <span class="tab-icon">⭐</span>
-            <span>Обране</span>
+            <span class="tab-icon">${ztIcon('star', 18)}</span>
+            <span>Збережене</span>
           </button>
           <button class="nav-tab-btn ${currentTab === 'links' ? 'active' : ''}" data-tab="links">
-            <span class="tab-icon">🌐</span>
+            <span class="tab-icon">${ztIcon('globe', 18)}</span>
             <span>Сервіси</span>
           </button>
         </div>
@@ -94,7 +95,7 @@ export class PassengerComponent {
     const isFavRoute = state.favorites.routes.includes(selectedRoute.id);
     const direction = state.selectedDirection;
     const stopIds = direction === 'forward' ? selectedRoute.stopsForward : selectedRoute.stopsBackward;
-    
+
     // Фільтрація списку маршрутів для бічної панелі
     const filteredRoutes = ROUTES_DATA.filter(r => {
       const matchSearch = r.number.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
@@ -107,24 +108,24 @@ export class PassengerComponent {
       <!-- Пошук та фільтри маршрутів -->
       <div class="search-filter-box">
         <div class="search-input-wrapper">
-          <span class="search-icon">🔎</span>
-          <input type="text" id="route-search-input" class="search-input" 
-                 placeholder="Номер маршруту або назва (напр. 2, Богунія, Вокзал)..." 
+          <span class="search-icon">${ztIcon('search', 18)}</span>
+          <input type="text" id="route-search-input" class="search-input"
+                 placeholder="Введіть номер маршруту або назву зупинки"
                  value="${this.searchQuery}">
-          ${this.searchQuery ? '<button id="btn-clear-search" class="btn-clear">✕</button>' : ''}
+          ${this.searchQuery ? `<button id="btn-clear-search" class="btn-clear" title="Очистити пошук">${ztIcon('close', 15)}</button>` : ''}
         </div>
         <div class="filter-pills">
-          <button class="filter-pill ${this.filterType === 'all' ? 'active' : ''}" data-type="all">Всі (${ROUTES_DATA.length})</button>
-          <button class="filter-pill ${this.filterType === 'trolleybus' ? 'active' : ''}" data-type="trolleybus">⚡ Тролейбуси (4)</button>
-          <button class="filter-pill ${this.filterType === 'bus' ? 'active' : ''}" data-type="bus">🚌 Автобуси (4)</button>
+          <button class="filter-pill ${this.filterType === 'all' ? 'active' : ''}" data-type="all">Усі маршрути (${ROUTES_DATA.length})</button>
+          <button class="filter-pill ${this.filterType === 'trolleybus' ? 'active' : ''}" data-type="trolleybus">${ztIcon('trolley', 16)} Тролейбуси</button>
+          <button class="filter-pill ${this.filterType === 'bus' ? 'active' : ''}" data-type="bus">${ztIcon('bus', 16)} Автобуси</button>
         </div>
       </div>
 
       <!-- Горизонтальний скрол знайдених маршрутів -->
       <div class="routes-horizontal-list">
         ${filteredRoutes.map(route => `
-          <div class="route-chip ${route.id === selectedRoute.id ? 'active' : ''}" 
-               data-route-id="${route.id}" 
+          <div class="route-chip ${route.id === selectedRoute.id ? 'active' : ''}"
+               data-route-id="${route.id}"
                style="--chip-color: ${route.color}">
             <div class="route-chip-badge">${route.number}</div>
             <div class="route-chip-info">
@@ -146,27 +147,27 @@ export class PassengerComponent {
               <h3 class="route-main-name">${selectedRoute.name}</h3>
             </div>
           </div>
-          <button class="btn-star-fav ${isFavRoute ? 'is-fav' : ''}" id="btn-toggle-fav-route" title="Додати в обране">
-            ${isFavRoute ? '★ В обраному' : '☆ В обране'}
+          <button class="btn-star-fav ${isFavRoute ? 'is-fav' : ''}" id="btn-toggle-fav-route" title="Зберегти цей маршрут">
+            ${ztIcon('star', 16)} ${isFavRoute ? 'Збережено' : 'Зберегти маршрут'}
           </button>
         </div>
 
         <div class="route-meta-strip">
           <div class="meta-item">
-            <span class="meta-label">Вартість:</span>
+            <span class="meta-label">Оплата:</span>
             <span class="meta-val">${selectedRoute.fare}</span>
           </div>
           <div class="meta-item">
-            <span class="meta-label">Інтервал:</span>
+            <span class="meta-label">Інтервал руху:</span>
             <span class="meta-val">${selectedRoute.interval}</span>
           </div>
           <div class="meta-item">
-            <span class="meta-label">Графік:</span>
+            <span class="meta-label">Години роботи:</span>
             <span class="meta-val">${selectedRoute.workingHours}</span>
           </div>
           <div class="meta-item">
-            <span class="meta-label">На лінії:</span>
-            <span class="meta-val text-emerald">${selectedRoute.activeVehiclesCount} ТЗ у демо-парку</span>
+            <span class="meta-label">У демо-моделі:</span>
+            <span class="meta-val text-emerald">${selectedRoute.activeVehiclesCount} машин</span>
           </div>
         </div>
 
@@ -197,8 +198,8 @@ export class PassengerComponent {
                   <div class="node-content">
                     <div class="node-name-row">
                       <span class="node-name">${stop.name}</span>
-                      ${stop.hasDisplay ? '<span class="badge-amenity" title="Електронне табло на зупинці">🖥️</span>' : ''}
-                      ${stop.hasShelter ? '<span class="badge-amenity" title="Крита зупинка">🏠</span>' : ''}
+                      ${stop.hasDisplay ? `<span class="badge-amenity" title="На зупинці є табло">${ztIcon('monitor', 15)}</span>` : ''}
+                      ${stop.hasShelter ? `<span class="badge-amenity" title="На зупинці є навіс">${ztIcon('shelter', 15)}</span>` : ''}
                     </div>
                     <div class="node-sub">
                       <span class="node-zone">${stop.zone}</span>
@@ -237,7 +238,7 @@ export class PassengerComponent {
             <span class="stop-zone-label">Район: ${currentStop.zone} • ${currentStop.connections.length} маршрутів через зупинку</span>
           </div>
           <button class="btn-star-fav ${isFavStop ? 'is-fav' : ''}" id="btn-toggle-fav-stop">
-            ${isFavStop ? '★ Зупинка в обраному' : '☆ Зберегти зупинку'}
+            ${ztIcon('star', 16)} ${isFavStop ? 'Зупинку збережено' : 'Зберегти зупинку'}
           </button>
         </div>
 
@@ -267,12 +268,12 @@ export class PassengerComponent {
                     <td>
                       <div class="arrival-model">${arr.model}</div>
                       <span class="arrival-board-num">Борт №${arr.boardNumber}</span>
-                      ${arr.lowFloor ? '<span class="badge-accessible" title="Низька підлога для маломобільних пасажирів">♿</span>' : ''}
+                      ${arr.lowFloor ? `<span class="badge-accessible" title="Низька підлога">${ztIcon('accessibility', 16)}</span>` : ''}
                     </td>
                     <td>
                       ${arr.status === 'delayed' ? `<span class="badge-warning">+${arr.delayMinutes} хв</span>` :
                         arr.status === 'ahead' ? `<span class="badge-info">${arr.delayMinutes} хв</span>` :
-                        '<span class="badge-success">В графіку</span>'}
+                        '<span class="badge-success">За графіком · демо</span>'}
                       ${arr.isScheduled ? '<span class="badge-sched">Демо-оцінка</span>' : '<span class="badge-gps">Демо-симуляція</span>'}
                     </td>
                     <td class="col-eta">
@@ -311,34 +312,38 @@ export class PassengerComponent {
           <div class="sched-top-row">
             <span class="route-large-badge" style="background:${selectedRoute.color}">${selectedRoute.number}</span>
             <div>
-              <h3>Розклад руху: ${selectedRoute.name}</h3>
-              <p class="text-muted">Демонстраційні дані, не офіційний розклад перевізників</p>
+              <span class="schedule-eyebrow">Демо-розклад маршруту ${selectedRoute.number}</span>
+              <h3>${selectedRoute.name}</h3>
+              <p class="schedule-disclaimer">Час відправлень для прикладу. Це не офіційний розклад перевізника.</p>
             </div>
           </div>
           <div class="sched-kpis">
             <div class="kpi-box">
               <span class="kpi-num">${sched.weekday.firstDeparture}</span>
-              <span class="kpi-lbl">Перший рейс (Будні)</span>
+              <span class="kpi-lbl">Перший рейс · будні</span>
             </div>
             <div class="kpi-box">
               <span class="kpi-num">${sched.weekday.lastDeparture}</span>
-              <span class="kpi-lbl">Останній рейс (Будні)</span>
+              <span class="kpi-lbl">Останній рейс · будні</span>
             </div>
             <div class="kpi-box">
               <span class="kpi-num">${sched.weekday.peakInterval}</span>
-              <span class="kpi-lbl">Інтервал у піковий час</span>
+              <span class="kpi-lbl">Інтервал · пік</span>
             </div>
             <div class="kpi-box">
               <span class="kpi-num">${sched.weekday.offPeakInterval}</span>
-              <span class="kpi-lbl">Інтервал у міжпік</span>
+              <span class="kpi-lbl">Інтервал · міжпік</span>
             </div>
           </div>
         </div>
 
         <div class="schedule-grid-box">
           <div class="sched-box-title">
-            <h4>Графік відправлень з кінцевої зупинки (${STOPS_DATA[selectedRoute.stopsForward[0]]?.name})</h4>
-            <span class="badge-weekday">Понеділок — П'ятниця</span>
+            <div>
+              <span class="schedule-eyebrow">ВІДПРАВЛЕННЯ З КІНЦЕВОЇ</span>
+              <h4>${STOPS_DATA[selectedRoute.stopsForward[0]]?.name}</h4>
+            </div>
+            <span class="badge-weekday">Будні · пн–пт</span>
           </div>
 
           ${sched.weekday.departuresFromTermA ? `
@@ -346,19 +351,25 @@ export class PassengerComponent {
               ${this.groupTimesByHour(sched.weekday.departuresFromTermA)}
             </div>
           ` : `
-            <p class="text-muted p-3">Інтервальний рух з 06:00 до 22:30 кожні ${sched.weekday.peakInterval} (пік) / ${sched.weekday.offPeakInterval} (міжпік).</p>
+            <p class="schedule-empty-note">Інтервали в демо-моделі: ${sched.weekday.peakInterval} у піковий час і ${sched.weekday.offPeakInterval} між піками.</p>
           `}
         </div>
 
         <div class="schedule-weekend-card">
           <div class="sched-box-title">
-            <h4>Вихідні та святкові дні (Субота — Неділя)</h4>
-            <span class="badge-weekend">Вихідні дні</span>
+            <div>
+              <span class="schedule-eyebrow">СУБОТА · НЕДІЛЯ · СВЯТА</span>
+              <h4>Вихідні дні</h4>
+            </div>
+            <span class="badge-weekend">Демо-розклад</span>
           </div>
-          <p class="weekend-note">
-            Початок руху: <strong>${sched.weekend.firstDeparture}</strong> | Завершення: <strong>${sched.weekend.lastDeparture}</strong>.<br>
-            Інтервал руху: <strong>${sched.weekend.peakInterval}</strong> (ранок/вечір), <strong>${sched.weekend.offPeakInterval}</strong> (вдень).
-          </p>
+          <div class="weekend-schedule-grid">
+            <div class="weekend-time"><span>Перший рейс</span><strong>${sched.weekend.firstDeparture}</strong></div>
+            <div class="weekend-time"><span>Останній рейс</span><strong>${sched.weekend.lastDeparture}</strong></div>
+            <div class="weekend-time"><span>Інтервал · пік</span><strong>${sched.weekend.peakInterval}</strong></div>
+            <div class="weekend-time"><span>Інтервал · міжпік</span><strong>${sched.weekend.offPeakInterval}</strong></div>
+          </div>
+          <p class="schedule-disclaimer">Орієнтовні демонстраційні значення, не підтверджені перевізником.</p>
         </div>
       </div>
     `;
@@ -372,7 +383,7 @@ export class PassengerComponent {
       hours[h].push(m);
     });
 
-    return Object.entries(hours).map(([hour, minutes]) => `
+    return Object.entries(hours).sort(([hourA], [hourB]) => Number(hourA) - Number(hourB)).map(([hour, minutes]) => `
       <div class="hour-row">
         <span class="hour-label">${hour}:00</span>
         <div class="minute-pills">
@@ -388,12 +399,16 @@ export class PassengerComponent {
     return `
       <div class="planner-tab-content">
         <div class="planner-card">
-          <h3 class="planner-title">🧭 Планувальник поїздки громадським транспортом</h3>
-          <p class="text-muted">Знайдіть оптимальний маршрут між зупинками Житомира без пересадок або з найшвидшим сполученням.</p>
+          <div class="planner-heading">
+            <span class="planner-heading-icon">${ztIcon('compass', 22)}</span>
+            <div><span class="schedule-eyebrow">МАРШРУТ МІЖ ЗУПИНКАМИ</span><h3 class="planner-title">План поїздки</h3></div>
+          </div>
+          <p class="planner-intro">Оберіть початкову й кінцеву зупинки — покажемо доступні варіанти на схемі маршрутів.</p>
+          <p class="planner-demo-note">Час у дорозі — орієнтовна оцінка за демонстраційною схемою. Офіційні розклади й GPS не підключені.</p>
 
           <div class="planner-form">
             <div class="planner-input-group">
-              <label for="planner-from-select">Звідки (Початкова зупинка):</label>
+              <label for="planner-from-select">Звідки</label>
               <select id="planner-from-select" class="zt-select">
                 ${stopsList.map(s => `
                   <option value="${s.id}" ${s.id === this.plannerFrom ? 'selected' : ''}>${s.name} (${s.zone})</option>
@@ -402,11 +417,11 @@ export class PassengerComponent {
             </div>
 
             <div class="planner-swap-btn-row">
-              <button id="btn-swap-planner" class="btn-swap" title="Поміняти місцями">⇅ Змінити напрямок</button>
+              <button id="btn-swap-planner" class="btn-swap" title="Поміняти місцями" aria-label="Поміняти початок і кінець місцями">${ztIcon('swap', 17)} <span>Змінити напрямок</span></button>
             </div>
 
             <div class="planner-input-group">
-              <label for="planner-to-select">Куди (Кінцева зупинка):</label>
+              <label for="planner-to-select">Куди</label>
               <select id="planner-to-select" class="zt-select">
                 ${stopsList.map(s => `
                   <option value="${s.id}" ${s.id === this.plannerTo ? 'selected' : ''}>${s.name} (${s.zone})</option>
@@ -414,7 +429,7 @@ export class PassengerComponent {
               </select>
             </div>
 
-            <button id="btn-run-planner" class="btn-calculate-route">Розрахувати маршрут поїздки 🚀</button>
+            <button id="btn-run-planner" class="btn-calculate-route">${ztIcon('route', 17)} Знайти маршрут</button>
           </div>
         </div>
 
@@ -468,7 +483,7 @@ export class PassengerComponent {
           <div class="trip-variants-list">
             ${directRoutes.map((variant, i) => `
               <div class="trip-variant-card ${i === 0 ? 'recommended' : ''}">
-                ${i === 0 ? '<div class="badge-recommended">🌟 Найшвидший варіант</div>' : ''}
+                ${i === 0 ? `<div class="badge-recommended">${ztIcon('timer', 15)} Найшвидший варіант</div>` : ''}
                 <div class="variant-top">
                   <div class="variant-route-badge" style="background:${variant.route.color}">
                     ${variant.route.number}
@@ -483,13 +498,13 @@ export class PassengerComponent {
                   </div>
                 </div>
                 <div class="variant-details">
-                  <div class="detail-step">🟢 <b>Посадка:</b> ${fromStop.name}</div>
+                  <div class="detail-step">${ztIcon('pin', 16)} <b>Посадка:</b> ${fromStop.name}</div>
                   <div class="detail-stops-list">Проїзд через: ${variant.intermediateStops.slice(1, -1).join(' → ') || 'прямий перегін'}</div>
-                  <div class="detail-step">🔴 <b>Висадка:</b> ${toStop.name}</div>
+                  <div class="detail-step">${ztIcon('pin', 16)} <b>Висадка:</b> ${toStop.name}</div>
                 </div>
                 <div class="variant-actions">
                   <button class="btn-show-on-map" onclick="window.ztSelectRoute('${variant.route.id}', '${variant.direction}')">
-                    Показати маршрут на карті 🗺️
+                    Показати маршрут на карті
                   </button>
                 </div>
               </div>
@@ -499,29 +514,59 @@ export class PassengerComponent {
       `;
     }
 
-    // Якщо прямих маршрутів нема, пропонуємо варіант з пересадкою в Центрі (Майдан Соборний)
+    // Шукаємо лише пересадки, які підтверджуються зупинками у двох різних маршрутах.
+    const segments = ROUTES_DATA.flatMap(route => ['forward', 'backward'].map(direction => ({
+      route,
+      direction,
+      stops: direction === 'forward' ? route.stopsForward : route.stopsBackward
+    })));
+    const transfers = [];
+    segments.forEach(first => {
+      const fromIdx = first.stops.indexOf(fromId);
+      if (fromIdx < 0) return;
+      first.stops.slice(fromIdx + 1).forEach((transferId, offset) => {
+        const firstToTransfer = offset + 1;
+        segments.forEach(second => {
+          if (second.route.id === first.route.id) return;
+          const transferIdx = second.stops.indexOf(transferId);
+          const toIdx = second.stops.indexOf(toId);
+          if (transferIdx < 0 || toIdx <= transferIdx) return;
+          const secondToEnd = toIdx - transferIdx;
+          const key = `${first.route.id}:${first.direction}:${transferId}:${second.route.id}:${second.direction}`;
+          if (transfers.some(item => item.key === key)) return;
+          transfers.push({
+            key, first, second, transferId,
+            firstStops: first.stops.slice(fromIdx, fromIdx + firstToTransfer + 1),
+            secondStops: second.stops.slice(transferIdx, toIdx + 1),
+            stopsCount: firstToTransfer + secondToEnd,
+            estMinutes: Math.round((firstToTransfer + secondToEnd) * 2.5 + 7)
+          });
+        });
+      });
+    });
+    transfers.sort((a, b) => a.estMinutes - b.estMinutes || a.stopsCount - b.stopsCount);
+
+    if (!transfers.length) {
+      return `<div class="trip-results-card"><div class="planner-no-route"><strong>Варіант не знайдено</strong><span>У демонстраційній схемі немає прямого маршруту або підтвердженої пересадки між цими зупинками. Спробуйте іншу пару.</span></div></div>`;
+    }
+
     return `
       <div class="trip-results-card">
-        <div class="results-header">
-          <h4>Маршрут з пересадкою через Майдан Соборний (Центр):</h4>
-          <span class="badge-warning">1 пересадка</span>
-        </div>
-        <div class="trip-variant-card recommended">
-          <div class="variant-top">
-            <div class="variant-info">
-              <strong>Поїздка з однією пересадкою</strong>
-              <span>${fromStop.name} → Майдан Соборний → ${toStop.name}</span>
+        <div class="results-header"><h4>Маршрути з пересадкою (${transfers.length})</h4><span class="badge-warning">1 пересадка</span></div>
+        <div class="trip-variants-list">
+          ${transfers.slice(0, 3).map((variant, i) => `
+            <div class="trip-variant-card ${i === 0 ? 'recommended' : ''}">
+              ${i === 0 ? `<div class="badge-recommended">${ztIcon('timer', 15)} Найшвидший варіант · демо</div>` : ''}
+              <div class="transfer-legs">
+                <div class="transfer-leg"><span class="variant-route-badge" style="background:${variant.first.route.color}">${variant.first.route.number}</span><span><strong>${variant.first.route.typeLabel} №${variant.first.route.number}</strong><small>${fromStop.name} → ${STOPS_DATA[variant.transferId]?.name}</small></span></div>
+                <div class="transfer-leg"><span class="variant-route-badge" style="background:${variant.second.route.color}">${variant.second.route.number}</span><span><strong>${variant.second.route.typeLabel} №${variant.second.route.number}</strong><small>${STOPS_DATA[variant.transferId]?.name} → ${toStop.name}</small></span></div>
+              </div>
+              <div class="variant-time"><span class="est-duration">~${variant.estMinutes} хв</span><span class="est-stops">${variant.stopsCount} перегонів · 1 пересадка</span></div>
+              <div class="variant-actions"><button class="btn-show-on-map" onclick="window.ztSelectRoute('${variant.first.route.id}', '${variant.first.direction}')">Показати перший маршрут на карті</button></div>
             </div>
-            <div class="variant-time">
-              <span class="est-duration">~25-30 хв</span>
-              <span class="est-stops">з урахуванням очікування</span>
-            </div>
-          </div>
-          <div class="variant-details">
-            <div class="detail-step">1️⃣ <b>Крок 1:</b> Сідайте на будь-який транспорт до зупинки <strong>Майдан Соборний</strong></div>
-            <div class="detail-step">2️⃣ <b>Крок 2:</b> Пересядьте на маршрут у бік зупинки <strong>${toStop.name}</strong></div>
-          </div>
+          `).join('')}
         </div>
+        <p class="planner-demo-note">Оцінка часу й пересадки демонстраційні; перевірте фактичний рух перед поїздкою.</p>
       </div>
     `;
   }
@@ -533,8 +578,9 @@ export class PassengerComponent {
 
     return `
       <div class="favorites-tab-content">
+        <div class="favorites-heading"><div><span class="schedule-eyebrow">ШВИДКИЙ ДОСТУП</span><h3>Збережене</h3><p>Ваші маршрути та зупинки в одному місці.</p></div><span class="favorites-total">${favRoutes.length + favStops.length} збережено</span></div>
         <div class="fav-section">
-          <h3>⭐ Обрані маршрути</h3>
+          <h3>${ztIcon('route', 18)} Маршрути <span class="fav-count">${favRoutes.length}</span></h3>
           ${favRoutes.length > 0 ? `
             <div class="fav-routes-grid">
               ${favRoutes.map(route => `
@@ -544,17 +590,17 @@ export class PassengerComponent {
                     <strong>${route.typeLabel} №${route.number}</strong>
                     <span>${route.name}</span>
                   </div>
-                  <button class="btn-remove-fav" data-del-route="${route.id}" title="Видалити">✕</button>
+                  <button class="btn-remove-fav" data-del-route="${route.id}" title="Видалити">${ztIcon('trash', 15)}</button>
                 </div>
               `).join('')}
             </div>
           ` : `
-            <p class="text-muted">Ви ще не додали жодного маршруту в обране. Натисніть "В обране" на картці потрібного транспорту.</p>
+            <div class="favorites-empty"><span class="favorites-empty-icon">${ztIcon('star', 20)}</span><strong>Тут з’являться ваші маршрути</strong><span>Збережіть маршрут кнопкою «Зберегти маршрут» у вкладці «Маршрути».</span></div>
           `}
         </div>
 
         <div class="fav-section mt-4">
-          <h3>📍 Збережені зупинки</h3>
+          <h3>${ztIcon('pin', 18)} Зупинки <span class="fav-count">${favStops.length}</span></h3>
           ${favStops.length > 0 ? `
             <div class="fav-stops-list">
               ${favStops.map(stop => `
@@ -565,13 +611,13 @@ export class PassengerComponent {
                   </div>
                   <div class="fav-actions">
                     <button class="btn-view-stop" data-open-stop="${stop.id}">Табло →</button>
-                    <button class="btn-remove-fav" data-del-stop="${stop.id}" title="Видалити">✕</button>
+                    <button class="btn-remove-fav" data-del-stop="${stop.id}" title="Видалити">${ztIcon('trash', 15)}</button>
                   </div>
                 </div>
               `).join('')}
             </div>
           ` : `
-            <p class="text-muted">Немає збережених зупинок. Збережіть зупинку для швидкого перегляду часу прибуття.</p>
+            <div class="favorites-empty"><span class="favorites-empty-icon">${ztIcon('pin', 20)}</span><strong>Тут з’являться ваші зупинки</strong><span>Збережіть зупинку, щоб швидко відкрити її табло.</span></div>
           `}
         </div>
       </div>
@@ -582,7 +628,7 @@ export class PassengerComponent {
     return `
       <div class="links-tab-content">
         <div class="links-header">
-          <h3>🌐 Офіційні транспортні сервіси міста Житомир</h3>
+          <h3>${ztIcon('globe', 18)} Транспортні сервіси Житомира</h3>
           <p class="text-muted">Швидкий перехід до зовнішніх систем моніторингу транспорту, перевізників та розкладів міста Житомир.</p>
         </div>
 
@@ -598,7 +644,7 @@ export class PassengerComponent {
         </div>
 
         <div class="links-info-card">
-          <h4>💡 Довідкова інформація</h4>
+          <h4>${ztIcon('info', 18)} Корисна інформація</h4>
           <p>
             • Гаряча лінія КП «Житомирське ТТУ»: <strong>+38 (0412) 47-07-42</strong><br>
             • Управління транспорту і зв'язку Житомирської міської ради: <strong>(0412) 48-12-08</strong><br>
@@ -706,6 +752,22 @@ export class PassengerComponent {
       });
     }
 
+    this.container.querySelectorAll('[data-del-route]').forEach(button => button.addEventListener('click', () => {
+      store.toggleFavoriteRoute(button.dataset.delRoute);
+    }));
+    this.container.querySelectorAll('[data-del-stop]').forEach(button => button.addEventListener('click', () => {
+      store.toggleFavoriteStop(button.dataset.delStop);
+    }));
+    this.container.querySelectorAll('[data-open-stop]').forEach(button => button.addEventListener('click', () => {
+      store.setPassengerTab('search');
+      store.setSelectedStop(button.dataset.openStop);
+    }));
+    this.container.querySelectorAll('.fav-route-item').forEach(card => card.addEventListener('click', event => {
+      if (event.target.closest('[data-del-route]')) return;
+      store.setPassengerTab('search');
+      store.setSelectedRoute(card.dataset.routeId);
+    }));
+
     // Початковий рендер табло зупинки
     this.renderStopBoard();
   }
@@ -731,8 +793,8 @@ export class PassengerComponent {
     }
 
     listEl.innerHTML = filteredRoutes.map(route => `
-      <div class="route-chip ${route.id === selectedRouteId ? 'active' : ''}" 
-           data-route-id="${route.id}" 
+      <div class="route-chip ${route.id === selectedRouteId ? 'active' : ''}"
+           data-route-id="${route.id}"
            style="--chip-color: ${route.color}">
         <div class="route-chip-badge">${route.number}</div>
         <div class="route-chip-info">
